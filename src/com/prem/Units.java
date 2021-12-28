@@ -3,11 +3,14 @@ package com.prem;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 
 public class Units {
-  private
-    List<Unit> unitList = new ArrayList<>();
+  private final
+  List<Unit> unitList = new ArrayList<>();
     int unitsToRepeat=0;
 
     //Constructor
@@ -27,49 +30,48 @@ public class Units {
         //  Load all unit from DateBase
         //Test data preparation
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        Date last_rep_date = formatter.parse("2021-12-27");
-        Date next_rep_date = formatter.parse("2021-12-28");
+         Date rep_date = formatter.parse("2021-12-28");
 
         Unit    unit1 = new Unit(1, "jeden",
-                "one", last_rep_date, next_rep_date,2.3);
+                "one", 1, rep_date,2.3);
         unitList.add(unit1);
 
         Unit    unit2 = new Unit(2, "dwa",
-                "two", last_rep_date, next_rep_date,2.3);
+                "two", 1, rep_date,2.3);
         unitList.add(unit2);
 
         Unit    unit3 = new Unit(3, "trzy",
-                "three", last_rep_date, next_rep_date,2.3);
+                "three", 1, rep_date,2.3);
         unitList.add(unit3);
 
         Unit    unit4 = new Unit(4, "cztery",
-                "four", last_rep_date, next_rep_date,2.3);
+                "four", 1, rep_date,2.3);
         unitList.add(unit4);
 
-        next_rep_date = formatter.parse("2021-12-27");
+        rep_date = formatter.parse("2021-12-27");
         Unit    unit5 = new Unit(5, "pięć",
-                "five", last_rep_date, next_rep_date,2.3);
+                "five", 1, rep_date,2.3);
         unitList.add(unit5);
 
-        next_rep_date = formatter.parse("2021-12-31");
+        rep_date = formatter.parse("2021-12-31");
         Unit    unit6 = new Unit(6, "sześć",
-                "six", last_rep_date, next_rep_date,1.3);
+                "six", 1, rep_date,1.3);
         unitList.add(unit6);
 
         Unit    unit7 = new Unit(7, "siedem",
-                "seven", last_rep_date, next_rep_date,1.3);
+                "seven", 1, rep_date,1.3);
         unitList.add(unit7);
 
         Unit    unit8 = new Unit(8, "osiem",
-                "eigth", last_rep_date, next_rep_date,1.3);
+                "eigth", 1, rep_date,1.3);
         unitList.add(unit8);
 
         Unit    unit9 = new Unit(9, "dziewięć",
-                "nigth", last_rep_date, next_rep_date,1.3);
+                "nigth", 1, rep_date,1.3);
         unitList.add(unit9);
 
         Unit    unit10 = new Unit(10, "dziesięć",
-                "ten", last_rep_date, next_rep_date,1.3);
+                "ten", 1, rep_date,1.3);
         unitList.add(unit10);
 
         return true;
@@ -83,9 +85,9 @@ public class Units {
             System.out.println("id="+unit.getId() +
                     " q="+unit.getQuestion()+
                     " a="+unit.getAnswer()+
-                    " lst="+dateFormat.format(unit.getLast_rep_date())+
-                    " nxt="+dateFormat.format(unit.getNext_rep_date())+
-                    " ef="+unit.getEasiness_factor()
+                    " interval="+unit.getInterval()+
+                    " rep_date="+dateFormat.format(unit.getRepetitionDate())+
+                    " EF="+unit.getEasinessFactor()
             );
         }
         System.out.println("DisplayFinish");
@@ -123,7 +125,7 @@ public class Units {
         Date nextRepDate;
 
         for (Unit unit: unitList) {
-            nextRepDate = unit.getNext_rep_date();
+            nextRepDate = unit.getRepetitionDate();
             if (today.after(nextRepDate) || today.equals(nextRepDate)) {
                 uToR++;
             }
@@ -148,7 +150,7 @@ public class Units {
 
         //Display question to repeat
         for (Unit unit: unitList) {
-            nextRepDate = unit.getNext_rep_date();
+            nextRepDate = unit.getRepetitionDate();
             if (today.after(nextRepDate) || today.equals(nextRepDate)) {
                 uToR++;
                 if (uToR>=unitToDisplay){
@@ -198,20 +200,55 @@ public class Units {
         System.out.println("0 - complete blackout");
     }
 
+
     //Calculate and set new grade and next repetition date
     void setNextRepDate(Unit selected, int grade) {
 
-        double newEF=1.3; //the smallest value
+        double newEF=1.3;  //the smallest value
+        int newInterval=1; //the smallest value
+        Date newDate=selected.getRepetitionDate();
 
-        //EF':=EF+(0.1-(5-q)*(0.08+(5-q)*0.02))
-        //q=quality of response = grade
-        newEF= selected.easiness_factor +
-                (0.1-(5-grade)*(0.08+(5-grade)*0.02));
-        System.out.println("newEF="+newEF);
+        if (grade<3) {
+            newEF=selected.getEasinessFactor();
+            
+        } else
+        {
+            // For grades 3,4,5,6
+            //EF':=EF+(0.1-(5-q)*(0.08+(5-q)*0.02))
+            //q=quality of response = grade
+            newEF= selected.easinessFactor +
+                    (0.1-(5-grade)*(0.08+(5-grade)*0.02));
+            System.out.println("newEF="+newEF);
 
-        //If EF is less than 1.3 then let EF be 1.3.
-        if (newEF<1.3) newEF=1.3;
+            //If EF is less than 1.3 then let EF be 1.3.
+            if (newEF<1.3) newEF=1.3;
 
-        //xxx
+
+            //if interval > 2 then: for n>2: I(n):=I(n-1)*EF
+            if (selected.getInterval()>2) {
+                newInterval=(int)(selected.getInterval()*newEF+0.5);
+            }
+
+            if (selected.getInterval()==2) {
+                newInterval=6;
+            }
+
+            if (selected.getInterval()==1) {
+                newInterval=2;
+            }
+
+        }
+
+        //Set new date
+        // xxx
+        newDate= java.util.Date.from(LocalDate.from(newDate.toInstant()).plusDays(newInterval).atStartOfDay()
+                .atZone(ZoneId.systemDefault())
+                .toInstant());
+
+        //Set new interval and EF
+        selected.setInterval(newInterval);
+        selected.setEasinessFactor(newEF);
+        selected.setRepetitionDate(newDate);
+
     }
 }

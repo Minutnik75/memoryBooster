@@ -7,17 +7,17 @@ public class Unit {
     long    id;
     String  question;
     String  answer;
-    Date    last_rep_date;      //last repetition date
-    Date    next_rep_date;      //next repetition date
-    double  easiness_factor;
+    int     interval;           //interval i(1)=1, i(2)=6, dla i>2 i(n)=i(n-1)*EF
+    Date    repetitionDate;      //next repetition date
+    double  easinessFactor;
 
-    public Unit(long id, String question, String answer, Date last_rep_date, Date next_rep_date, double easiness_factor) {
+    public Unit(long id, String question, String answer, int interval, Date repetitionDate, double easinessFactor) {
         this.id = id;
         this.question = question;
         this.answer = answer;
-        this.last_rep_date = last_rep_date;
-        this.next_rep_date = next_rep_date;
-        this.easiness_factor = easiness_factor;
+        this.interval = interval;
+        this.repetitionDate = repetitionDate;
+        this.easinessFactor = easinessFactor;
     }
 
     public long getId() {
@@ -44,28 +44,28 @@ public class Unit {
         this.answer = answer;
     }
 
-    public Date getLast_rep_date() {
-        return last_rep_date;
+    public int getInterval() {
+        return interval;
     }
 
-    public void setLast_rep_date(Date last_rep_date) {
-        this.last_rep_date = last_rep_date;
+    public void setInterval(int interval) {
+        this.interval = interval;
     }
 
-    public Date getNext_rep_date() {
-        return next_rep_date;
+    public Date getRepetitionDate() {
+        return repetitionDate;
     }
 
-    public void setNext_rep_date(Date next_rep_date) {
-        this.next_rep_date = next_rep_date;
+    public void setRepetitionDate(Date repetitionDate) {
+        this.repetitionDate = repetitionDate;
     }
 
-    public double getEasiness_factor() {
-        return easiness_factor;
+    public double getEasinessFactor() {
+        return easinessFactor;
     }
 
-    public void setEasiness_factor(double easiness_factor) {
-        this.easiness_factor = easiness_factor;
+    public void setEasinessFactor(double easinessFactor) {
+        this.easinessFactor = easinessFactor;
     }
 
     /*
