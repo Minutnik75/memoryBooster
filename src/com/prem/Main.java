@@ -1,13 +1,13 @@
 package com.prem;
 
-import java.io.IOException;
-import java.util.Scanner;
 
-import static java.lang.Runtime.*;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
+        boolean shouldContinue=true;
+
         System.out.println("Start");
 
         //Load units
@@ -15,16 +15,22 @@ public class Main {
 
         //Display units
         units.DisplayUnits();
-/* xxxx
-        do {
-            String opt=Menu();
-            if (opt)
-        } while (opt.equals(9))
-*/
 
+        while(shouldContinue) {
+            int userChoice = ShowMenu();
+            switch (userChoice){
+                case 0 -> units.DisplayUnits();
+                case 1 -> System.out.println("Wybrano opcję 1");
+                case 2 -> System.out.println("Wybrano opcję 2");
+                case 3 -> System.out.println("Wybrano opcję 3");
+
+                case 9 -> shouldContinue=false;
+             }
+        }
     }
 
-    static String Menu() {
+    private static int ShowMenu() {
+
         System.out.println("Menu");
         System.out.println("0 - Display");
         System.out.println("1 - Repeat");
@@ -32,9 +38,10 @@ public class Main {
         System.out.println("3 - Add");
         System.out.println("9 - Exit");
 
-        Scanner sc= new Scanner(System.in); //System.in is a standard input stream.
+        Scanner scanner= new Scanner(System.in); //System.in is a standard input stream.
         System.out.print("Choose an option: ");
-        String str= sc.nextLine(); //reads string.
-        return str;
+
+
+        return scanner.nextInt();
     }
 }
