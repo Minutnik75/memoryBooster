@@ -14,13 +14,13 @@ public class Main {
         Units units = new Units();
 
         //Display units
-        units.DisplayUnits();
+        units.displayUnits();
 
         while(shouldContinue) {
             int userChoice = ShowMenu();
             switch (userChoice){
-                case 0 -> units.DisplayUnits();
-                case 1 -> System.out.println("Wybrano opcję 1");
+                case 0 -> units.displayUnits();
+                case 1 -> units.repeatUnits();
                 case 2 -> System.out.println("Wybrano opcję 2");
                 case 3 -> System.out.println("Wybrano opcję 3");
 
