@@ -3,9 +3,6 @@ package com.prem;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.*;
 
 public class Units {
@@ -28,50 +25,62 @@ public class Units {
     //Used in constructor to load data from DB
     boolean loadFromDB() throws ParseException {
         //  Load all unit from DateBase
-        //Test data preparation
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-         Date rep_date = formatter.parse("2021-12-28");
 
-        Unit    unit1 = new Unit(1, "jeden",
-                "one", 1, rep_date,2.3);
+        //Test data preparation
+        Calendar rep_date = new GregorianCalendar(2021,Calendar.DECEMBER,28);
+
+        Unit    unit1 = new Unit(1, false, "jeden", "", "",
+        "one", "", "", "", "", "", "",
+        1, rep_date, 2.3);
         unitList.add(unit1);
 
-        Unit    unit2 = new Unit(2, "dwa",
-                "two", 1, rep_date,2.3);
+        Unit    unit2 = new Unit(2, false, "dwa", "", "",
+                "two", "", "", "", "", "", "",
+                1, rep_date, 2.3);
         unitList.add(unit2);
 
-        Unit    unit3 = new Unit(3, "trzy",
-                "three", 1, rep_date,2.3);
+        rep_date = new GregorianCalendar(2021,Calendar.DECEMBER,27);
+
+        Unit    unit3 = new Unit(3, false, "trzy", "", "",
+                "three", "", "", "", "", "", "",
+                1, rep_date, 2.3);
         unitList.add(unit3);
 
-        Unit    unit4 = new Unit(4, "cztery",
-                "four", 1, rep_date,2.3);
+        rep_date = new GregorianCalendar(2022,Calendar.MARCH,1);
+
+        Unit    unit4 = new Unit(4, false, "cztery", "", "",
+                "four", "", "", "", "", "", "",
+                1, rep_date, 2.3);
         unitList.add(unit4);
 
-        rep_date = formatter.parse("2021-12-27");
-        Unit    unit5 = new Unit(5, "pięć",
-                "five", 1, rep_date,2.3);
+        Unit    unit5 = new Unit(5, false, "pięć", "", "",
+                "five", "", "", "", "", "", "",
+                1, rep_date, 2.3);
         unitList.add(unit5);
 
-        rep_date = formatter.parse("2021-12-31");
-        Unit    unit6 = new Unit(6, "sześć",
-                "six", 1, rep_date,1.3);
+        Unit    unit6 = new Unit(6, false, "sześć", "", "",
+                "six", "", "", "", "", "", "",
+                1, rep_date, 1.3);
         unitList.add(unit6);
 
-        Unit    unit7 = new Unit(7, "siedem",
-                "seven", 1, rep_date,1.3);
+        Unit    unit7 = new Unit(7, false, "siedem", "", "",
+                "seven", "", "", "", "", "", "",
+                1, rep_date, 1.3);
         unitList.add(unit7);
 
-        Unit    unit8 = new Unit(8, "osiem",
-                "eigth", 1, rep_date,1.3);
+        Unit    unit8 = new Unit(8, false, "osiem", "", "",
+                "eight", "", "", "", "", "", "",
+                1, rep_date, 1.3);
         unitList.add(unit8);
 
-        Unit    unit9 = new Unit(9, "dziewięć",
-                "nigth", 1, rep_date,1.3);
+        Unit    unit9 = new Unit(9, false, "dziewięć", "", "",
+                "nine", "", "", "", "", "", "",
+                1, rep_date, 1.3);
         unitList.add(unit9);
 
-        Unit    unit10 = new Unit(10, "dziesięć",
-                "ten", 1, rep_date,1.3);
+        Unit    unit10 = new Unit(10, false, "dziesięć", "", "",
+                "10", "", "", "", "", "", "",
+                1, rep_date, 1.3);
         unitList.add(unit10);
 
         return true;
@@ -81,12 +90,11 @@ public class Units {
     void displayUnits() {
         System.out.println("DisplayBegin");
         for (Unit unit: unitList){
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             System.out.println("id="+unit.getId() +
                     " q="+unit.getQuestion()+
                     " a="+unit.getAnswer()+
                     " interval="+unit.getInterval()+
-                    " rep_date="+dateFormat.format(unit.getRepetitionDate())+
+                    " rep_date="+unit.getRepetitionDate().getTime()+
                     " EF="+unit.getEasinessFactor()
             );
         }
@@ -115,14 +123,12 @@ public class Units {
     int unitsToRepeat() {
 
         int uToR = 0;
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         //Today in string format
-        Date today= new Date();
-        //String strToday=dateFormat.format(today);
+        Calendar today= new GregorianCalendar();
 
         //Unit next repetition date
-        Date nextRepDate;
+        Calendar nextRepDate;
 
         for (Unit unit: unitList) {
             nextRepDate = unit.getRepetitionDate();
@@ -142,11 +148,10 @@ public class Units {
         Unit selected=null;
 
         //Today in string format
-        Date today= new Date();
-        //String strToday=dateFormat.format(today);
+        Calendar today= new GregorianCalendar();
 
         //Unit next repetition date
-        Date nextRepDate;
+        Calendar nextRepDate;
 
         //Display question to repeat
         for (Unit unit: unitList) {
@@ -206,11 +211,12 @@ public class Units {
 
         double newEF=1.3;  //the smallest value
         int newInterval=1; //the smallest value
-        Date newDate=selected.getRepetitionDate();
+
+        //Current Date
+        Calendar newDate=new GregorianCalendar();
 
         if (grade<3) {
             newEF=selected.getEasinessFactor();
-            
         } else
         {
             // For grades 3,4,5,6
@@ -218,7 +224,6 @@ public class Units {
             //q=quality of response = grade
             newEF= selected.easinessFactor +
                     (0.1-(5-grade)*(0.08+(5-grade)*0.02));
-            System.out.println("newEF="+newEF);
 
             //If EF is less than 1.3 then let EF be 1.3.
             if (newEF<1.3) newEF=1.3;
@@ -239,16 +244,16 @@ public class Units {
 
         }
 
-        //Set new date
-        // xxx
-        newDate= java.util.Date.from(LocalDate.from(newDate.toInstant()).plusDays(newInterval).atStartOfDay()
-                .atZone(ZoneId.systemDefault())
-                .toInstant());
+        //Set new date + newInterval
+        newDate.add(Calendar.DAY_OF_MONTH,newInterval);
+
 
         //Set new interval and EF
         selected.setInterval(newInterval);
         selected.setEasinessFactor(newEF);
         selected.setRepetitionDate(newDate);
+
+        selected.displayUnit();
 
     }
 }

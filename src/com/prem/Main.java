@@ -14,7 +14,7 @@ public class Main {
         Units units = new Units();
 
         //Display units
-        units.displayUnits();
+        //units.displayUnits();
 
         while(shouldContinue) {
             int userChoice = ShowMenu();
