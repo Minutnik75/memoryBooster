@@ -4,6 +4,14 @@ package com.prem;
 import java.util.Scanner;
 
 public class Main {
+    // Declaring ANSI_RESET so that we can reset the color
+    public static final String ANSI_RESET = "\u001B[0m";
+
+    // Declaring the color
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+
 
     public static void main(String[] args) {
         boolean shouldContinue=true;
@@ -31,7 +39,8 @@ public class Main {
 
     private static int ShowMenu() {
 
-        System.out.println("Menu");
+        System.out.println("==================================================");
+        System.out.println(ANSI_GREEN+"Menu"+ANSI_RESET);
         System.out.println("0 - Display");
         System.out.println("1 - Repeat");
         System.out.println("2 - Learn");
@@ -40,7 +49,6 @@ public class Main {
 
         Scanner scanner= new Scanner(System.in); //System.in is a standard input stream.
         System.out.print("Choose an option: ");
-
 
         return scanner.nextInt();
     }

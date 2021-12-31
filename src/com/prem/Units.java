@@ -6,8 +6,18 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Units {
-  private final
-  List<Unit> unitList = new ArrayList<>();
+    // Declaring ANSI_RESET so that we can reset the color
+    public static final String ANSI_RESET = "\u001B[0m";
+
+    // Declaring the color
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+
+
+    private final
+
+    List<Unit> unitList = new ArrayList<>();
     int unitsToRepeat=0;
 
     //Constructor
@@ -29,21 +39,21 @@ public class Units {
         //Test data preparation
         Calendar rep_date = new GregorianCalendar(2021,Calendar.DECEMBER,28);
 
-        Unit    unit1 = new Unit(1, false, "jeden", "", "",
-        "one", "", "", "", "", "", "",
-        1, rep_date, 2.3);
+        Unit    unit1 = new Unit(1, true, "ESP-robić", "", "",
+                "hacer", "hago", "haces", "hace", "hacemos", "hacéis", "hacen",
+                11, rep_date, 2.8);
         unitList.add(unit1);
 
-        Unit    unit2 = new Unit(2, false, "dwa", "", "",
+        Unit    unit2 = new Unit(2, false, "dwa", "dwa_1", "",
                 "two", "", "", "", "", "", "",
-                1, rep_date, 2.3);
+                11, rep_date, 2.8);
         unitList.add(unit2);
 
         rep_date = new GregorianCalendar(2021,Calendar.DECEMBER,27);
 
-        Unit    unit3 = new Unit(3, false, "trzy", "", "",
+        Unit    unit3 = new Unit(3, false, "trzy", "trzy_1", "trzy_2",
                 "three", "", "", "", "", "", "",
-                1, rep_date, 2.3);
+                11, rep_date, 2.8);
         unitList.add(unit3);
 
         rep_date = new GregorianCalendar(2022,Calendar.MARCH,1);
@@ -105,16 +115,14 @@ public class Units {
     void repeatUnits() {
         //Set the number of units to repeat
         unitsToRepeat=unitsToRepeat();
-        System.out.println("Number units to repeat:" + unitsToRepeat);
+        System.out.println("Number units to repeat:"+ ANSI_PURPLE + unitsToRepeat + ANSI_RESET);
 
         //Random unit to repeat
         while (unitsToRepeat>0){
             int selected = (int)(Math.random() * unitsToRepeat)+1;
-            System.out.println("Selected: " + selected);
+            //System.out.println("Selected: " + selected);
             displayUnit(selected);
             unitsToRepeat=unitsToRepeat-1;
-
-
         }
 
     }
@@ -159,9 +167,17 @@ public class Units {
             if (today.after(nextRepDate) || today.equals(nextRepDate)) {
                 uToR++;
                 if (uToR>=unitToDisplay){
-                    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                    System.out.println("id="+unit.getId() +
-                            " q="+unit.getQuestion());
+                    System.out.println();
+                    System.out.println("==================================================");
+                    System.out.println("id="+unit.getId());
+                    System.out.println("q="+ANSI_YELLOW+unit.getQuestion()+ANSI_RESET);
+                    if (!unit.getQuestion1().equals(""))
+                        System.out.println("q="+ANSI_YELLOW+unit.getQuestion1()+ANSI_RESET);
+                    if (!unit.getQuestion2().equals(""))
+                        System.out.println("q="+ANSI_YELLOW+unit.getQuestion2()+ANSI_RESET);
+                    if(unit.isVerbIrregular)
+                        System.out.println(ANSI_YELLOW+"Irregular verb"+ANSI_RESET);
+                    System.out.println("--------------------------------------------------");
 //                            " a="+unit.getAnswer()+
 //                            " lst="+dateFormat.format(unit.getLast_rep_date())+
 //                            " nxt="+dateFormat.format(unit.getNext_rep_date())+
@@ -173,25 +189,32 @@ public class Units {
         }
 
         //Wait for remind by user
-        System.out.println("Press Enter to continue");
+        System.out.print("Press "+ANSI_YELLOW+"Enter"+ANSI_RESET+" to continue");
         Scanner scanner= new Scanner(System.in);
         scanner.nextLine();
 
         //Display correct answer
-        System.out.println("id="+selected.getId() +
-                " q="+selected.getQuestion()+
-                " a="+selected.getAnswer());
+        System.out.println("--------------------------------------------------");
+        System.out.println("id="+selected.getId());
+        System.out.println("q="+selected.getQuestion());
+        System.out.println("a="+ANSI_GREEN+selected.getAnswer()+ANSI_RESET);
+        if(selected.isVerbIrregular)
+        {
+            System.out.println(ANSI_GREEN+selected.getAnswer1()+"\t\t"+selected.getAnswer4()+ANSI_RESET);
+            System.out.println(ANSI_GREEN+selected.getAnswer2()+"\t\t"+selected.getAnswer5()+ANSI_RESET);
+            System.out.println(ANSI_GREEN+selected.getAnswer3()+"\t\t"+selected.getAnswer6()+ANSI_RESET);
+        }
+        System.out.println("--------------------------------------------------");
 
         //Assess the quality of repetition response in 0-5 grade scale
-        displayGradeScale();
+        //displayGradeScale();
 
         //Input grade
-        System.out.println("Enter your grade: 0 - 5: ");
+        System.out.print("Enter your grade: 0 - 5: ");
         int grade=scanner.nextInt();
 
         //Calculate and set new grade and next repetition date
         setNextRepDate(selected, grade);
-
 
     }
 
@@ -253,7 +276,8 @@ public class Units {
         selected.setEasinessFactor(newEF);
         selected.setRepetitionDate(newDate);
 
-        selected.displayUnit();
+        //Just for Debug reason
+        //selected.displayUnit();
 
     }
 }
