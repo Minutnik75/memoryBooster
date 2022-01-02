@@ -7,6 +7,7 @@ public class Unit {
     private
     long id;
     boolean isVerbIrregular;
+    boolean isTaught;
 
     String question;
     String question1;
@@ -24,10 +25,11 @@ public class Unit {
     Calendar repetitionDate;     //next repetition date
     double easinessFactor;
 
-    public Unit(long id, boolean isVerbIrregular, String question, String question1, String question2,
+    public Unit(long id, boolean isTaught, boolean isVerbIrregular, String question, String question1, String question2,
                 String answer, String answer1, String answer2, String answer3, String answer4, String answer5, String answer6,
                 int interval, Calendar repetitionDate, double easinessFactor) {
         this.id = id;
+        this.isTaught=isTaught;
         this.isVerbIrregular = isVerbIrregular;
         this.question = question;
         this.question1 = question1;
@@ -181,5 +183,13 @@ public class Unit {
         System.out.println("interval:       " + interval);
         System.out.println("repetitionDate: " + repetitionDate.getTime());
         System.out.println("easinessFactor: " + easinessFactor);
+    }
+
+    public boolean isTaught() {
+        return isTaught;
+    }
+
+    public void setTaught(boolean taught) {
+        isTaught = taught;
     }
 }

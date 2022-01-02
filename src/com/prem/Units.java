@@ -1,9 +1,15 @@
 package com.prem;
 
-import java.text.DateFormat;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class Units {
     // Declaring ANSI_RESET so that we can reset the color
@@ -14,11 +20,15 @@ public class Units {
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_YELLOW = "\u001B[33m";
 
+    public static final String DATA_FILE_ENG_NAME="data_eng.txt";
+    public static final String DATA_FILE_ESP_NAME="data_esp.txt";
 
     private final
-
     List<Unit> unitList = new ArrayList<>();
     int unitsToRepeat=0;
+    int totalUnitNumber=0;
+    int unitNumberToLearn=0;
+    String dataFileName="";
 
     //Constructor
     public Units() {
@@ -30,6 +40,9 @@ public class Units {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+        //Set total units number
+        totalUnitNumber=totalUnits();
     }
 
     //Used in constructor to load data from DB
@@ -39,59 +52,75 @@ public class Units {
         //Test data preparation
         Calendar rep_date = new GregorianCalendar(2021,Calendar.DECEMBER,28);
 
-        Unit    unit1 = new Unit(1, true, "ESP-robić", "", "",
+        Unit    unit1 = new Unit(1, true, true, "ESP-robić", "", "",
                 "hacer", "hago", "haces", "hace", "hacemos", "hacéis", "hacen",
                 11, rep_date, 2.8);
         unitList.add(unit1);
 
-        Unit    unit2 = new Unit(2, false, "dwa", "dwa_1", "",
+        Unit    unit2 = new Unit(2, true, false, "dwa", "dwa_1", "",
                 "two", "", "", "", "", "", "",
                 11, rep_date, 2.8);
         unitList.add(unit2);
 
         rep_date = new GregorianCalendar(2021,Calendar.DECEMBER,27);
 
-        Unit    unit3 = new Unit(3, false, "trzy", "trzy_1", "trzy_2",
+        Unit    unit3 = new Unit(3, true, false, "trzy", "trzy_1", "trzy_2",
                 "three", "", "", "", "", "", "",
                 11, rep_date, 2.8);
         unitList.add(unit3);
 
         rep_date = new GregorianCalendar(2022,Calendar.MARCH,1);
 
-        Unit    unit4 = new Unit(4, false, "cztery", "", "",
+        Unit    unit4 = new Unit(4, true, false, "cztery", "", "",
                 "four", "", "", "", "", "", "",
                 1, rep_date, 2.3);
         unitList.add(unit4);
 
-        Unit    unit5 = new Unit(5, false, "pięć", "", "",
+        Unit    unit5 = new Unit(5, true, false, "pięć", "", "",
                 "five", "", "", "", "", "", "",
                 1, rep_date, 2.3);
         unitList.add(unit5);
 
-        Unit    unit6 = new Unit(6, false, "sześć", "", "",
+        Unit    unit6 = new Unit(6, true, false, "sześć", "", "",
                 "six", "", "", "", "", "", "",
                 1, rep_date, 1.3);
         unitList.add(unit6);
 
-        Unit    unit7 = new Unit(7, false, "siedem", "", "",
+        Unit    unit7 = new Unit(7, true, false, "siedem", "", "",
                 "seven", "", "", "", "", "", "",
                 1, rep_date, 1.3);
         unitList.add(unit7);
 
-        Unit    unit8 = new Unit(8, false, "osiem", "", "",
+        Unit    unit8 = new Unit(8, true, false, "osiem", "", "",
                 "eight", "", "", "", "", "", "",
                 1, rep_date, 1.3);
         unitList.add(unit8);
 
-        Unit    unit9 = new Unit(9, false, "dziewięć", "", "",
+        Unit    unit9 = new Unit(9, true,  false, "dziewięć", "", "",
                 "nine", "", "", "", "", "", "",
                 1, rep_date, 1.3);
         unitList.add(unit9);
 
-        Unit    unit10 = new Unit(10, false, "dziesięć", "", "",
+        Unit    unit10 = new Unit(10, true, false, "dziesięć", "", "",
                 "10", "", "", "", "", "", "",
                 1, rep_date, 1.3);
         unitList.add(unit10);
+
+        Unit    unit11 = new Unit(11, false, false, "jedenaście", "", "",
+                "eleven", "", "", "", "", "", "",
+                1, null, 1.3);
+        unitList.add(unit11);
+
+        Scanner scanner= new Scanner(System.in);
+        int option=0;
+        System.out.println("Choose the langage? 1-ENG, 2-ESP");
+
+        do {
+            option=(int)scanner.nextInt();
+        } while ((option!=1) && (option!=2));
+
+        if (option==1) dataFileName=DATA_FILE_ENG_NAME;
+        if (option==2) dataFileName=DATA_FILE_ESP_NAME;
 
         return true;
     }
@@ -148,6 +177,13 @@ public class Units {
         return uToR;
     }
 
+    //Option 2 - Count the number of all units
+    int totalUnits() {
+
+        int tU = unitList.size();
+        System.out.println("Total units:"+tU);
+        return tU;
+    }
 
     //Option 1
     void displayUnit(int unitToDisplay){
@@ -228,7 +264,6 @@ public class Units {
         System.out.println("0 - complete blackout");
     }
 
-
     //Calculate and set new grade and next repetition date
     void setNextRepDate(Unit selected, int grade) {
 
@@ -279,5 +314,166 @@ public class Units {
         //Just for Debug reason
         //selected.displayUnit();
 
+    }
+
+    //Option 2
+    void Learn(){
+
+        //Test DB Connection
+        try {
+
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test01?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "przemek", "przemek");
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery("select * from users");
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString("username"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Option x and 9
+    //Rightnow data will be store in text file
+    void saveDateToDB() {
+
+        String line = "";
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(dataFileName));
+
+            //Number of units
+            line= String.valueOf(totalUnitNumber);
+            writer.write(line);
+            writer.newLine();
+            line="--------------------------------------------------";
+            writer.write(line);
+            writer.newLine();
+
+            //Save all units
+            for (Unit unit: unitList) {
+                //Id
+                line=String.valueOf(unit.getId());
+                writer.write(line);
+                writer.newLine();
+
+                //isTaught
+                line=String.valueOf(unit.isTaught());
+                writer.write(line);
+                writer.newLine();
+
+                //isVerbIrregular
+                line=String.valueOf(unit.isVerbIrregular());
+                writer.write(line);
+                writer.newLine();
+
+                //question
+                line=unit.getQuestion();
+                writer.write(line);
+                writer.newLine();
+
+                //question1
+                line=unit.getQuestion1();
+                writer.write(line);
+                writer.newLine();
+
+                //question2
+                line=unit.getQuestion2();
+                writer.write(line);
+                writer.newLine();
+
+                //answer
+                line=unit.getAnswer();
+                writer.write(line);
+                writer.newLine();
+
+                //answer1
+                line=unit.getAnswer1();
+                writer.write(line);
+                writer.newLine();
+
+                //answer2
+                line=unit.getAnswer2();
+                writer.write(line);
+                writer.newLine();
+
+                //answer3
+                line=unit.getAnswer3();
+                writer.write(line);
+                writer.newLine();
+
+                //answer4
+                line=unit.getAnswer4();
+                writer.write(line);
+                writer.newLine();
+
+                //answer5
+                line=unit.getAnswer5();
+                writer.write(line);
+                writer.newLine();
+
+                //answer6
+                line=unit.getAnswer6();
+                writer.write(line);
+                writer.newLine();
+
+                //interval
+                line=String.valueOf(unit.getInterval());
+                writer.write(line);
+                writer.newLine();
+
+                if(unit.isTaught()) {
+                    //repetitionDate
+                    GregorianCalendar calendar = new GregorianCalendar();
+                    String month="";
+                    String day="";
+                    calendar=(GregorianCalendar) unit.getRepetitionDate();
+
+                    if (calendar.get(Calendar.MONTH)<10)
+                        month="0"+String.valueOf(calendar.get(Calendar.MONTH));
+                    else
+                        month=String.valueOf(calendar.get(Calendar.MONTH));
+
+                    if (calendar.get(Calendar.DAY_OF_MONTH)<10)
+                        day="0"+String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+                    else
+                        day=String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+
+                    line=String.valueOf(calendar.get(Calendar.YEAR))+"-"+
+                            month+"-"+
+                            day;
+                }
+                else
+                    line="";
+
+                writer.write(line);
+                writer.newLine();
+
+                //easinessFactor
+                line=String.valueOf(unit.getEasinessFactor());
+                writer.write(line);
+                writer.newLine();
+
+                //separator
+                line="--------------------------------------------------";
+                writer.write(line);
+                writer.newLine();
+            }
+            writer.close();
+
+            System.out.println("Data correctly saved in DB");
+
+        } catch (IOException e) {
+            System.out.println("Data NOT correctly saved in DB");
+            e.printStackTrace();
+        }
+
+
+    }
+
+    //Option 9 - Exit & Save date to File
+    void Exit() {
+        saveDateToDB();
     }
 }

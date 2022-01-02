@@ -29,12 +29,14 @@ public class Main {
             switch (userChoice){
                 case 0 -> units.displayUnits();
                 case 1 -> units.repeatUnits();
-                case 2 -> System.out.println("Wybrano opcję 2");
+                case 2 -> units.Learn();
                 case 3 -> System.out.println("Wybrano opcję 3");
 
                 case 9 -> shouldContinue=false;
              }
         }
+
+        units.Exit();
     }
 
     private static int ShowMenu() {
