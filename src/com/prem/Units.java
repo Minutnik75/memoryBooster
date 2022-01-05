@@ -1,8 +1,11 @@
 package com.prem;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.*;
 
@@ -19,6 +22,7 @@ public class Units {
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_RED = "\u001B[31m";
 
     public static final String DATA_FILE_ENG_NAME="data_eng.txt";
     public static final String DATA_FILE_ESP_NAME="data_esp.txt";
@@ -29,6 +33,7 @@ public class Units {
     int totalUnitNumber=0;
     int unitNumberToLearn=0;
     String dataFileName="";
+    boolean isDataSaved=false;  //determine whether data has been saved or not
 
     //Constructor
     public Units() {
@@ -113,10 +118,10 @@ public class Units {
 
         Scanner scanner= new Scanner(System.in);
         int option=0;
-        System.out.println("Choose the langage? 1-ENG, 2-ESP");
+        System.out.print("Choose the langage? 1-ENG, 2-ESP ");
 
         do {
-            option=(int)scanner.nextInt();
+            option=scanner.nextInt();
         } while ((option!=1) && (option!=2));
 
         if (option==1) dataFileName=DATA_FILE_ENG_NAME;
@@ -129,13 +134,15 @@ public class Units {
     void displayUnits() {
         System.out.println("DisplayBegin");
         for (Unit unit: unitList){
-            System.out.println("id="+unit.getId() +
+            System.out.print("id="+unit.getId() +
                     " q="+unit.getQuestion()+
                     " a="+unit.getAnswer()+
-                    " interval="+unit.getInterval()+
-                    " rep_date="+unit.getRepetitionDate().getTime()+
-                    " EF="+unit.getEasinessFactor()
-            );
+                    " interval="+unit.getInterval());
+            if (unit.getRepetitionDate() == null)
+                System.out.print(" rep_date=NULL");
+            else
+                System.out.print(" rep_date="+unit.getRepetitionDate().getTime());
+            System.out.println(" EF="+unit.getEasinessFactor());
         }
         System.out.println("DisplayFinish");
     }
@@ -334,9 +341,153 @@ public class Units {
         }
     }
 
-    //Option x and 9
-    //Rightnow data will be store in text file
-    void saveDateToDB() {
+    //Option 7
+    //Right now data will be load from text file
+    void loadDataFromDB()
+    {
+        BufferedReader br = null;
+        try {
+            br = Files.newBufferedReader(Paths.get(dataFileName));
+            int numberOfUnits=0;
+            String extractedLine=br.readLine();
+            numberOfUnits=Integer.valueOf(extractedLine);
+            System.out.println("numberOfUnits: "+extractedLine);
+
+            // =========
+            extractedLine=br.readLine();
+//            System.out.println("SEP: "+extractedLine);
+
+
+            for (int i = 0; i < numberOfUnits; i++) {
+
+                //Id
+                extractedLine= br.readLine();
+//                System.out.println("id: "+extractedLine);
+                long id=Long.valueOf(extractedLine);
+
+                //isTaught
+                extractedLine= br.readLine();
+//                System.out.println("isTaught: "+extractedLine);
+                boolean isTaugth=Boolean.valueOf(extractedLine);
+
+                //isVerbIrregular
+                extractedLine= br.readLine();
+//                System.out.println("isVerbIrregular: "+extractedLine);
+                boolean isVerbIrregular=Boolean.valueOf(extractedLine);
+
+                //question
+                extractedLine=br.readLine();
+                String question=extractedLine;
+//                System.out.println("question: "+extractedLine);
+
+                //question1
+                extractedLine=br.readLine();
+                String question1=extractedLine;
+//                System.out.println("question1: "+extractedLine);
+
+                //question2
+                extractedLine=br.readLine();
+                String question2=extractedLine;
+//                System.out.println("question2: "+extractedLine);
+
+                //answer
+                extractedLine=br.readLine();
+                String answer=extractedLine;
+//                System.out.println("answer: "+extractedLine);
+
+                //answer1
+                extractedLine=br.readLine();
+                String answer1=extractedLine;
+//                System.out.println("answer1: "+extractedLine);
+
+                //answer2
+                extractedLine=br.readLine();
+                String answer2=extractedLine;
+//                System.out.println("answer2: "+extractedLine);
+
+                //answer3
+                extractedLine=br.readLine();
+                String answer3=extractedLine;
+//                System.out.println("answer3: "+extractedLine);
+
+                //answer4
+                extractedLine=br.readLine();
+                String answer4=extractedLine;
+//                System.out.println("answer4: "+extractedLine);
+
+                //answer5
+                extractedLine=br.readLine();
+                String answer5=extractedLine;
+//                System.out.println("answer5: "+extractedLine);
+
+                //answer6
+                extractedLine=br.readLine();
+                String answer6=extractedLine;
+//                System.out.println("answer6: "+extractedLine);
+
+                //interval
+                extractedLine= br.readLine();
+//                System.out.println("interval: "+extractedLine);
+                int interval=Integer.valueOf(extractedLine);
+
+                //repetitionDate
+                GregorianCalendar repetitionDate = new GregorianCalendar();
+                repetitionDate=null;
+
+                extractedLine= br.readLine();
+//                System.out.println("repetitionDate: "+extractedLine);
+
+                if(isTaugth) {
+
+                    if(extractedLine.length()>0){
+                        String year=extractedLine.substring(0,4);
+//                        System.out.println("year: "+year);
+
+                        String month=extractedLine.substring(5,7);
+//                        System.out.println("month: "+month);
+
+                        String day=extractedLine.substring(8,10);
+//                        System.out.println("day: "+day);
+
+                        int iYear=Integer.valueOf(year);
+                        int iMonth=Integer.valueOf(month)-1;
+                        int iDay=Integer.valueOf(day);
+
+                        repetitionDate = new GregorianCalendar(iYear,iMonth,iDay);
+                    }
+                }
+
+                //easinessFactor
+                extractedLine= br.readLine();
+//                System.out.println("easinessFactor: "+extractedLine);
+                double easinessFactor=Double.valueOf(extractedLine);
+
+                //separator
+                extractedLine= br.readLine();
+//                System.out.println("SEP: "+extractedLine);
+
+                //creates new unit
+                Unit unit = new Unit(id,isTaugth,isVerbIrregular,question,question1,question2,answer,answer1,
+                        answer2,answer3,answer4,answer5,answer6,interval,repetitionDate,easinessFactor);
+                //unit.displayUnit();
+
+                unitList.add(unit);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Option 7 - Load data
+    void Load() {
+        unitList.clear();
+        loadDataFromDB();
+    }
+
+
+    //Option 8 and 9
+    //Right now data will be store in text file
+    void saveDataToDB() {
 
         String line = "";
 
@@ -472,8 +623,26 @@ public class Units {
 
     }
 
-    //Option 9 - Exit & Save date to File
-    void Exit() {
-        saveDateToDB();
+
+    //Option 8 - Save data to File
+    void Save() {
+        saveDataToDB();
+        isDataSaved=true;
     }
+
+    //Option 9 - Exit & Save data to File
+    void Exit() {
+        if (!isDataSaved) {
+            System.out.print(ANSI_RED+"Data has not been saved. "+ANSI_RESET);
+            System.out.print("Would you like to save them Y/N? ");
+
+            Scanner scanner= new Scanner(System.in);
+            String tmpAnswer= scanner.nextLine();
+
+            if (!tmpAnswer.equals("N"))
+                saveDataToDB();
+        }
+
+    }
+
 }

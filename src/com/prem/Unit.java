@@ -21,7 +21,7 @@ public class Unit {
     String answer5;                                    //ESP - vosotros/as
     String answer6;                                    //ESP - ellos/ellas/ustedes
 
-    int interval;           //interval i(1)=1, i(2)=6, dla i>2 i(n)=i(n-1)*EF
+    int interval;                //interval i(1)=1, i(2)=6, dla i>2 i(n)=i(n-1)*EF
     Calendar repetitionDate;     //next repetition date
     double easinessFactor;
 
@@ -181,7 +181,10 @@ public class Unit {
         System.out.println("answer5:        " + answer5);
         System.out.println("answer6:        " + answer6);
         System.out.println("interval:       " + interval);
-        System.out.println("repetitionDate: " + repetitionDate.getTime());
+        if(repetitionDate==null)
+            System.out.println("repetitionDate: NULL");
+        else
+            System.out.println("repetitionDate: " + repetitionDate.getTime());
         System.out.println("easinessFactor: " + easinessFactor);
     }
 
