@@ -9,31 +9,33 @@ import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.*;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
 public class Units {
     // Declaring ANSI_RESET so that we can reset the color
     public static final String ANSI_RESET = "\u001B[0m";
 
     // Declaring the color
     public static final String ANSI_PURPLE = "\u001B[35m";
-    public static final String ANSI_GREEN = "\u001B[32m";
+//    public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_RED = "\u001B[31m";
 
     public static final String DATA_FILE_ENG_NAME="data_eng.txt";
     public static final String DATA_FILE_ESP_NAME="data_esp.txt";
 
-    private final
-    List<Unit> unitList = new ArrayList<>();
-    int unitsToRepeat=0;
-    int totalUnitNumber=0;
-    int unitNumberToLearn=0;
-    String dataFileName="";
-    boolean isDataSaved=false;  //determine whether data has been saved or not
+    private final List<Unit> unitList = new ArrayList<>();
+    private int totalUnitNumber=0;
+    private int unitNumberToLearn=0;
+    private String dataFileName="";
+    private boolean isDataSaved=false;      //determine whether data has been saved or not
+
+    private boolean isRepetitionDone=false; //determine whether repetition has been dane or not
+
+    //Number of new units to learn - daily
+    private static final int UNITS_TO_LEARN = 3;
+
+    //How many time does unit needs to be repeated to be treated as learnt
+    private static final int REP_TO_LEARN=3;
+
 
     //Constructor
     public Units() {
@@ -106,14 +108,14 @@ public class Units {
                 1, rep_date, 1.3);
         unitList.add(unit9);
 
-        Unit    unit10 = new Unit(10, true, false, "dziesięć", "", "",
-                "10", "", "", "", "", "", "",
-                1, rep_date, 1.3);
+        Unit    unit10 = new Unit(10, false, false, "dziesięć", "", "",
+                "ten", "", "", "", "", "", "",
+                1, null, 1.3);
         unitList.add(unit10);
 
-        Unit    unit11 = new Unit(11, false, false, "jedenaście", "", "",
+        Unit    unit11 = new Unit(11, true, false, "jedenaście", "", "",
                 "eleven", "", "", "", "", "", "",
-                1, null, 1.3);
+                1, rep_date, 1.3);
         unitList.add(unit11);
 
         Scanner scanner= new Scanner(System.in);
@@ -134,15 +136,7 @@ public class Units {
     void displayUnits() {
         System.out.println("DisplayBegin");
         for (Unit unit: unitList){
-            System.out.print("id="+unit.getId() +
-                    " q="+unit.getQuestion()+
-                    " a="+unit.getAnswer()+
-                    " interval="+unit.getInterval());
-            if (unit.getRepetitionDate() == null)
-                System.out.print(" rep_date=NULL");
-            else
-                System.out.print(" rep_date="+unit.getRepetitionDate().getTime());
-            System.out.println(" EF="+unit.getEasinessFactor());
+            unit.displayUnit();
         }
         System.out.println("DisplayFinish");
     }
@@ -150,16 +144,18 @@ public class Units {
     //Option 1 - repeat units
     void repeatUnits() {
         //Set the number of units to repeat
-        unitsToRepeat=unitsToRepeat();
+        int unitsToRepeat = unitsToRepeat();
         System.out.println("Number units to repeat:"+ ANSI_PURPLE + unitsToRepeat + ANSI_RESET);
 
         //Random unit to repeat
-        while (unitsToRepeat>0){
+        while (unitsToRepeat >0){
             int selected = (int)(Math.random() * unitsToRepeat)+1;
             //System.out.println("Selected: " + selected);
             displayUnit(selected);
-            unitsToRepeat=unitsToRepeat-1;
+            unitsToRepeat = unitsToRepeat -1;
         }
+
+        isRepetitionDone=true;
 
     }
 
@@ -210,21 +206,7 @@ public class Units {
             if (today.after(nextRepDate) || today.equals(nextRepDate)) {
                 uToR++;
                 if (uToR>=unitToDisplay){
-                    System.out.println();
-                    System.out.println("==================================================");
-                    System.out.println("id="+unit.getId());
-                    System.out.println("q="+ANSI_YELLOW+unit.getQuestion()+ANSI_RESET);
-                    if (!unit.getQuestion1().equals(""))
-                        System.out.println("q="+ANSI_YELLOW+unit.getQuestion1()+ANSI_RESET);
-                    if (!unit.getQuestion2().equals(""))
-                        System.out.println("q="+ANSI_YELLOW+unit.getQuestion2()+ANSI_RESET);
-                    if(unit.isVerbIrregular)
-                        System.out.println(ANSI_YELLOW+"Irregular verb"+ANSI_RESET);
-                    System.out.println("--------------------------------------------------");
-//                            " a="+unit.getAnswer()+
-//                            " lst="+dateFormat.format(unit.getLast_rep_date())+
-//                            " nxt="+dateFormat.format(unit.getNext_rep_date())+
-//                            " ef="+unit.getEasiness_factor()
+                    unit.displayQuestion();
                     selected=unit;
                     break;
                 }
@@ -237,17 +219,7 @@ public class Units {
         scanner.nextLine();
 
         //Display correct answer
-        System.out.println("--------------------------------------------------");
-        System.out.println("id="+selected.getId());
-        System.out.println("q="+selected.getQuestion());
-        System.out.println("a="+ANSI_GREEN+selected.getAnswer()+ANSI_RESET);
-        if(selected.isVerbIrregular)
-        {
-            System.out.println(ANSI_GREEN+selected.getAnswer1()+"\t\t"+selected.getAnswer4()+ANSI_RESET);
-            System.out.println(ANSI_GREEN+selected.getAnswer2()+"\t\t"+selected.getAnswer5()+ANSI_RESET);
-            System.out.println(ANSI_GREEN+selected.getAnswer3()+"\t\t"+selected.getAnswer6()+ANSI_RESET);
-        }
-        System.out.println("--------------------------------------------------");
+        selected.displayAnswer();
 
         //Assess the quality of repetition response in 0-5 grade scale
         //displayGradeScale();
@@ -326,18 +298,117 @@ public class Units {
     //Option 2
     void Learn(){
 
-        //Test DB Connection
-        try {
+//        //Test DB Connection
+//        try {
+//
+//            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test01?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "przemek", "przemek");
+//            Statement statement = connection.createStatement();
+//
+//            ResultSet resultSet = statement.executeQuery("select * from users");
+//            while (resultSet.next()) {
+//                System.out.println(resultSet.getString("username"));
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test01?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "przemek", "przemek");
-            Statement statement = connection.createStatement();
+        if (!isRepetitionDone)
+        {
+            System.out.print(ANSI_RED+"Repetitions have not been done. "+ANSI_RESET);
+            System.out.print("Would you like to continue Y/N? ");
 
-            ResultSet resultSet = statement.executeQuery("select * from users");
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString("username"));
+            Scanner scanner= new Scanner(System.in);
+            String tmpAnswer= scanner.nextLine();
+
+            if (tmpAnswer.equals("Y") || (tmpAnswer.equals("y")))
+            {
+                //Continue without repetitions
+                int[] indexes = new int[UNITS_TO_LEARN];
+                int[] repetitions = new int[UNITS_TO_LEARN];
+
+                //Set repetitions number to 0
+                for (int y=0;y<UNITS_TO_LEARN;y++)
+                    repetitions[y]=0;
+
+                //Remember indexes of units to learn
+                int i=0;
+                for (Unit unit: unitList) {
+//            System.out.println("id "+unit.getId());
+                    if (!unit.isTaught())
+                    {
+                        //Remember unit's index
+//                System.out.println("remembered id "+unit.getId());
+                        indexes[i]=unitList.indexOf(unit);
+                        i++;
+
+                        // if UNITS_TO_LEARN is reached break the loop
+                        if (i>=UNITS_TO_LEARN){
+                            break;
+                        }
+                    }
+                }
+
+                //Set LEFT_TO_LEARN to UNITS_TO_LEARN.
+                //Number of new units left to learn - daily
+                //initial value is UNITS_TO_LEARN
+                int LEFT_TO_LEARN = i;
+
+                if (LEFT_TO_LEARN==0)
+                    System.out.println(ANSI_YELLOW+"There is no unit to learn!!!"+ANSI_RESET);
+
+                while(LEFT_TO_LEARN >0){
+
+                    //Draw a number from 1 to LEFT_TO_LEARN
+                    Random randomNumber = new Random();
+
+                    //Number from 0 to LEFT_TO_LEARN-1
+                    int random = randomNumber.nextInt(LEFT_TO_LEARN);
+//            System.out.println("random="+random);
+//            System.out.println("rep[random]="+repetitions[random]);
+//            System.out.println("LEFT_TO_LEARN="+LEFT_TO_LEARN);
+
+                    //if correct repetition is lower than REP_TO_LEARN
+                    if (repetitions[random]<REP_TO_LEARN)
+                    {
+                        //Display question
+                        Unit unit=unitList.get(indexes[random]);
+                        unit.displayQuestion();
+
+                        //Display answer
+                        //Wait for remind by user
+                        System.out.print("Press "+ANSI_YELLOW+"Enter"+ANSI_RESET+" to continue");
+                        scanner= new Scanner(System.in);
+                        scanner.nextLine();
+
+                        //Evaluate answer
+                        //Input grade
+                        System.out.print("Enter your grade: 0 - 5: ");
+                        int grade=scanner.nextInt();
+
+                        //Grade higher than 3 means correct
+                        if (grade>3)
+                        {
+                            //Increase repetition number
+                            repetitions[random]=repetitions[random]+1;
+
+//                    System.out.println("rep[random]="+repetitions[random]);
+//                    System.out.println("REP_TO_LEARN="+REP_TO_LEARN);
+                            if (repetitions[random]>=REP_TO_LEARN)
+                            {
+                                //Decrease number to left
+                                LEFT_TO_LEARN--;
+
+                                //Mark as Taught
+                                unit.setTaught(true);
+                            }
+                        }
+
+                    }
+
+                }
+
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+
         }
     }
 
@@ -639,7 +710,7 @@ public class Units {
             Scanner scanner= new Scanner(System.in);
             String tmpAnswer= scanner.nextLine();
 
-            if (!tmpAnswer.equals("N"))
+            if (!tmpAnswer.equals("N") && (!tmpAnswer.equals("n")))
                 saveDataToDB();
         }
 

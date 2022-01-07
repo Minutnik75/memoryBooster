@@ -4,6 +4,15 @@ import java.util.Calendar;
 
 
 public class Unit {
+    // Declaring ANSI_RESET so that we can reset the color
+    public static final String ANSI_RESET = "\u001B[0m";
+
+    // Declaring the color
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_RED = "\u001B[31m";
+
     private
     long id;
     boolean isVerbIrregular;
@@ -168,24 +177,49 @@ public class Unit {
     }
 
     public void displayUnit() {
-        System.out.println("id:             " + id);
+        this.displayAnswer();
+        System.out.println("isTaught:       " + isTaught);
         System.out.println("isVerbIrregular:" + isVerbIrregular);
-        System.out.println("question:       " + question);
-        System.out.println("question1:      " + question1);
-        System.out.println("question2:      " + question2);
-        System.out.println("answer:         " + answer);
-        System.out.println("answer1:        " + answer1);
-        System.out.println("answer2:        " + answer2);
-        System.out.println("answer3:        " + answer3);
-        System.out.println("answer4:        " + answer4);
-        System.out.println("answer5:        " + answer5);
-        System.out.println("answer6:        " + answer6);
         System.out.println("interval:       " + interval);
         if(repetitionDate==null)
             System.out.println("repetitionDate: NULL");
         else
             System.out.println("repetitionDate: " + repetitionDate.getTime());
         System.out.println("easinessFactor: " + easinessFactor);
+    }
+
+    public void displayQuestion()
+    {
+        System.out.println();
+        System.out.println("==================================================");
+        System.out.println("id="+id);
+        System.out.println("q="+ANSI_YELLOW+question+ANSI_RESET);
+        if (!question1.equals(""))
+            System.out.println("q="+ANSI_YELLOW+question1+ANSI_RESET);
+        if (!question2.equals(""))
+            System.out.println("q="+ANSI_YELLOW+question2+ANSI_RESET);
+        if(isVerbIrregular)
+            System.out.println(ANSI_YELLOW+"Irregular verb"+ANSI_RESET);
+        System.out.println("--------------------------------------------------");
+    }
+
+    public void displayAnswer()
+    {
+        System.out.println("--------------------------------------------------");
+        System.out.println("id="+id);
+        System.out.println("q="+ANSI_YELLOW+question+ANSI_RESET);
+        if (!question1.equals(""))
+            System.out.println("q="+ANSI_YELLOW+question1+ANSI_RESET);
+        if (!question2.equals(""))
+            System.out.println("q="+ANSI_YELLOW+question2+ANSI_RESET);
+        System.out.println("a="+ANSI_GREEN+answer+ANSI_RESET);
+        if(isVerbIrregular)
+        {
+            System.out.println(ANSI_GREEN+answer1+"\t\t"+answer4+ANSI_RESET);
+            System.out.println(ANSI_GREEN+answer2+"\t\t"+answer5+ANSI_RESET);
+            System.out.println(ANSI_GREEN+answer3+"\t\t"+answer6+ANSI_RESET);
+        }
+        System.out.println("--------------------------------------------------");
     }
 
     public boolean isTaught() {
