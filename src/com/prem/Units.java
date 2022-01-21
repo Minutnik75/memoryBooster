@@ -31,11 +31,10 @@ public class Units {
     private boolean isRepetitionDone=false; //determine whether repetition has been dane or not
 
     //Number of new units to learn - daily
-    private static final int UNITS_TO_LEARN = 3;
+    private static final int UNITS_TO_LEARN = 5;
 
     //How many time does unit needs to be repeated to be treated as learnt
     private static final int REP_TO_LEARN=3;
-
 
     //Constructor
     public Units() {
@@ -59,64 +58,141 @@ public class Units {
         //Test data preparation
         Calendar rep_date = new GregorianCalendar(2021,Calendar.DECEMBER,28);
 
-        Unit    unit1 = new Unit(1, true, true, "ESP-robić", "", "",
-                "hacer", "hago", "haces", "hace", "hacemos", "hacéis", "hacen",
-                11, rep_date, 2.8);
-        unitList.add(unit1);
+//        Unit    unit1 = new Unit(1, true, true, "ESP-robić", "", "",
+//                "hacer", "hago", "haces", "hace", "hacemos", "hacéis", "hacen",
+//                11, rep_date, 2.8);
+//        unitList.add(unit1);
+//
+//        Unit    unit2 = new Unit(2, true, false, "dwa", "dwa_1", "",
+//                "two", "", "", "", "", "", "",
+//                11, rep_date, 2.8);
+//        unitList.add(unit2);
+//
+//        rep_date = new GregorianCalendar(2021,Calendar.DECEMBER,27);
+//
+//        Unit    unit3 = new Unit(3, true, false, "trzy", "trzy_1", "trzy_2",
+//                "three", "", "", "", "", "", "",
+//                11, rep_date, 2.8);
+//        unitList.add(unit3);
+//
+//        rep_date = new GregorianCalendar(2022,Calendar.MARCH,1);
+//
+//        Unit    unit4 = new Unit(4, true, false, "cztery", "", "",
+//                "four", "", "", "", "", "", "",
+//                1, rep_date, 2.3);
+//        unitList.add(unit4);
+//
+//        Unit    unit5 = new Unit(5, true, false, "pięć", "", "",
+//                "five", "", "", "", "", "", "",
+//                1, rep_date, 2.3);
+//        unitList.add(unit5);
+//
+//        Unit    unit6 = new Unit(6, true, false, "sześć", "", "",
+//                "six", "", "", "", "", "", "",
+//                1, rep_date, 1.3);
+//        unitList.add(unit6);
+//
+//        Unit    unit7 = new Unit(7, true, false, "siedem", "", "",
+//                "seven", "", "", "", "", "", "",
+//                1, rep_date, 1.3);
+//        unitList.add(unit7);
+//
+//        Unit    unit8 = new Unit(8, true, false, "osiem", "", "",
+//                "eight", "", "", "", "", "", "",
+//                1, rep_date, 1.3);
+//        unitList.add(unit8);
+//
+//        Unit    unit9 = new Unit(9, true,  false, "dziewięć", "", "",
+//                "nine", "", "", "", "", "", "",
+//                1, rep_date, 1.3);
+//        unitList.add(unit9);
+//
+//        Unit    unit10 = new Unit(10, false, false, "dziesięć", "", "",
+//                "ten", "", "", "", "", "", "",
+//                1, null, 1.3);
+//        unitList.add(unit10);
+//
+//        Unit    unit11 = new Unit(11, true, false, "jedenaście", "", "",
+//                "eleven", "", "", "", "", "", "",
+//                1, rep_date, 1.3);
+//        unitList.add(unit11);
 
-        Unit    unit2 = new Unit(2, true, false, "dwa", "dwa_1", "",
-                "two", "", "", "", "", "", "",
-                11, rep_date, 2.8);
-        unitList.add(unit2);
+//        Unit    unit1 = new Unit(1,false,true,"brać (też w znaczeniu pić, jeść)","","","tomar","tomo","tomas","toma","tomamos","tomáis","toman",1,null,1.3); unitList.add(unit1);
+//        Unit    unit2 = new Unit(2,false,false,"wino","Nie pijam wina","","el vino","No bebo vino","","","","","",1,null,1.3); unitList.add(unit2);
+//        Unit    unit3 = new Unit(3,false,false,"jeden","","","uno","","","","","","",1,null,1.3); unitList.add(unit3);
+//        Unit    unit4 = new Unit(40,false,false,"dwa","","","dos","","","","","","",1,null,1.3); unitList.add(unit4);
+//        Unit    unit5 = new Unit(5,false,false,"trzy ","","","tres","","","","","","",1,null,1.3); unitList.add(unit5);
+//        Unit    unit6 = new Unit(6,false,false,"cztery","","","cuatro","","","","","","",1,null,1.3); unitList.add(unit6);
+//        Unit    unit7 = new Unit(7,false,false,"pięć","","","cinco","","","","","","",1,null,1.3); unitList.add(unit7);
+//        Unit    unit8 = new Unit(8,false,false,"sześć","","","seis","","","","","","",1,null,1.3); unitList.add(unit8);
+//        Unit    unit9 = new Unit(9,false,false,"siedem","","","siete","","","","","","",1,null,1.3); unitList.add(unit9);
+//        Unit    unit10 = new Unit(10,false,false,"osiem","","","ocho","","","","","","",1,null,1.3); unitList.add(unit10);
+//        Unit    unit11 = new Unit(11,false,false,"dziewięć","","","nueve","","","","","","",1,null,1.3); unitList.add(unit11);
+//        Unit    unit12 = new Unit(12,false,false,"dziesięć","Mam dziesięć lat","","diez","Tengo diez años","","","","","",1,null,1.3); unitList.add(unit12);
+//        Unit    unit13 = new Unit(13,false,false,"jedenaście","","","once","","","","","","",1,null,1.3); unitList.add(unit13);
+//        Unit    unit14 = new Unit(14,false,false,"dwanaście","","","doce","","","","","","",1,null,1.3); unitList.add(unit14);
+//        Unit    unit15 = new Unit(15,false,false,"trzynaście","","","trece","","","","","","",1,null,1.3); unitList.add(unit15);
+//        Unit    unit16 = new Unit(16,false,false,"czternaście","","","catorce","","","","","","",1,null,1.3); unitList.add(unit16);
+//        Unit    unit17 = new Unit(17,false,false,"piętnaście","","","quince","","","","","","",1,null,1.3); unitList.add(unit17);
+//        Unit    unit18 = new Unit(18,false,false,"szesnaście","","","dieciséis","","","","","","",1,null,1.3); unitList.add(unit18);
+//        Unit    unit19 = new Unit(19,false,false,"siedemnaście","Mam siedemnaście lat","","diecisiete","Tengo diecisiete años","","","","","",1,null,1.3); unitList.add(unit19);
+//        Unit    unit20 = new Unit(20,false,false,"osiemnaście","","","dieciocho","","","","","","",1,null,1.3); unitList.add(unit20);
+//        Unit    unit21 = new Unit(21,false,false,"dziewiętnaście","","","diecinueve","","","","","","",1,null,1.3); unitList.add(unit21);
+//        Unit    unit22 = new Unit(22,false,false,"dwadzieścia","On ma dwadzieścia lat","","veinte","Él tiene veinte años","","","","","",1,null,1.3); unitList.add(unit22);
+//        Unit    unit23 = new Unit(23,false,false,"dwadzieścia jeden","Ona ma dwadzieścia jeden lat","","veintiuno","Ella tiene veintiun años","","","","","",1,null,1.3); unitList.add(unit23);
+//        Unit    unit24 = new Unit(24,false,false,"dwadzieścia dwa","Mam dwadzieścia dwa lata","","veintidós","Tengo veintidós años","","","","","",1,null,1.3); unitList.add(unit24);
+//        Unit    unit25 = new Unit(25,false,false,"dwadzieścia trzy ","On ma dwadzieścia trzy lata a ona dwadzieścia jeden","","veintitrés ","Él tiene veintitrés años y ella veintiuno","","","","","",1,null,1.3); unitList.add(unit25);
+//        Unit    unit26 = new Unit(26,false,false,"Pan/Pani","Czy Pan jest Polakiem?","","usted","¿Es usted Polaco?","","","","","",1,null,1.3); unitList.add(unit26);
+//        Unit    unit27 = new Unit(27,false,false,"być","ja jestem","ty jesteś, on jest","ser","yo soy","tú eres","él/ella es","","","",1,null,1.3); unitList.add(unit27);
+//        Unit    unit28 = new Unit(28,false,false,"Polak","Polka","(Ja) jestem Polakiem","el polaco","la polaca","(Yo) soy polaco","","","","",1,null,1.3); unitList.add(unit28);
+//        Unit    unit29 = new Unit(29,false,false,"ja","(ja) Jestem Paweł","","yo","(Yo) soy Pablo","","","","","",1,null,1.3); unitList.add(unit29);
+//        Unit    unit30 = new Unit(30,false,false,"ona","Ona jest Polką","","ella","Ella es polaca","","","","","",1,null,1.3); unitList.add(unit30);
+//        Unit    unit31 = new Unit(31,false,false,"on","On jest Hiszpanem","","él","Él es español","","","","","",1,null,1.3); unitList.add(unit31);
+//        Unit    unit32 = new Unit(32,false,false,"Hiszpan","Hiszpanka","(Ty) jesteś Hiszpanką","el español","la española","(Tú) eres española","","","","",1,null,1.3); unitList.add(unit32);
+//        Unit    unit33 = new Unit(33,false,false,"ty","(Ty) jesteś Agnieszka","","tú","(Tú) eres Inés","","","","","",1,null,1.3); unitList.add(unit33);
+//        Unit    unit34 = new Unit(34,false,false,"kto?","Kim jesteś?","","¿quién?","¿?Quién eres?","","","","","",1,null,1.3); unitList.add(unit34);
+//        Unit    unit35 = new Unit(35,false,false,"Cześć!","","","¡Hola!","","","","","","",1,null,1.3); unitList.add(unit35);
+//        Unit    unit36 = new Unit(36,false,false,"jak?","Jak się masz?","","¿cómo?","¿Cómo estás?","","","","","",1,null,1.3); unitList.add(unit36);
+//        Unit    unit37 = new Unit(37,false,false,"Ja bawie się","ty bawisz się","on/ona bawi się","yo toco","tú tocas","él/ella usted toca","","","","",1,null,1.3); unitList.add(unit37);
+//        Unit    unit38 = new Unit(38,false,false,"Ja jem","Ty jesz","on/ona je","yo como","tú comes","él/ella come","","","","",1,null,1.3); unitList.add(unit38);
+//        Unit    unit39 = new Unit(39,false,false,"dobrze","w porządku","Masz się dobrze?","bien","bien","¿Estás bien?","","","","",1,null,1.3); unitList.add(unit39);
+//        Unit    unit40 = new Unit(40,false,false,"tak","Tak, mam się dobrze","","sí","Sí, estoy bien","","","","","",1,null,1.3); unitList.add(unit40);
+//        Unit    unit41 = new Unit(41,false,false,"nie ","Nie, nie mam się dobrze","","no","No, no estoy bien","","","","","",1,null,1.3); unitList.add(unit41);
+//        Unit    unit42 = new Unit(42,false,false,"Dziękuje","Mam się dobrze, dziękuje","","¡Gracias!","Estoy bien, gracias","","","","","",1,null,1.3); unitList.add(unit42);
+//        Unit    unit43 = new Unit(43,false,false,"bardzo","Paweł ma się bardzo dobrze","","muy","Pablo está muy bien","","","","","",1,null,1.3); unitList.add(unit43);
+//        Unit    unit44 = new Unit(44,false,false,"i; a","A jak się ma Paweł","","y","¿Y cómo está Pablo?","","","","","",1,null,1.3); unitList.add(unit44);
+//        Unit    unit45 = new Unit(45,false,false,"gdzie?","","","¿dónde?","","","","","","",1,null,1.3); unitList.add(unit45);
+//        Unit    unit46 = new Unit(46,false,false,"z","Skąd jesteś?","","de","¿De dónde eres?","","","","","",1,null,1.3); unitList.add(unit46);
+//        Unit    unit47 = new Unit(47,false,false,"Polska","Jestem z Polski","","Polonia","Soy de Polonia","","","","","",1,null,1.3); unitList.add(unit47);
+//        Unit    unit48 = new Unit(48,false,false,"Warszawa","Jesteś z Warszawy?","Nie, nie jestem z Warszawy","Varsovia","¿Eres de Varsovia?","No, no soy de Varsovia","","","","",1,null,1.3); unitList.add(unit48);
+//        Unit    unit49 = new Unit(49,false,false,"w","Gdzie jesteś?","Jestem w Polsce","en","¿Dónde estás?","Estoy en Polonia","","","","",1,null,1.3); unitList.add(unit49);
+//        Unit    unit50 = new Unit(50,false,false,"my (mężczyzni)","(My) jesteśmy w Polsce","","nosotros","(Nosotros) estamos en Polonia","","","","","",1,null,1.3); unitList.add(unit50);
+//        Unit    unit51 = new Unit(51,false,false,"być (pochodzenie)","my jesteśmy","wy jesteście, oni są","ser","somos","sois, son","","","","",1,null,1.3); unitList.add(unit51);
+//        Unit    unit52 = new Unit(52,false,false,"być (stanu emocjonalnego)","my jesteśmy","wy jesteście, oni są","estar","estamos","estáis, están","","","","",1,null,1.3); unitList.add(unit52);
+//        Unit    unit53 = new Unit(53,false,false,"my (kobiety)","(My) jesteśmy z Polski","","nosotras","(Nosotras) somos de Polonia","","","","","",1,null,1.3); unitList.add(unit53);
+//        Unit    unit54 = new Unit(54,false,false,"wy (mężczyźni)","Czy (wy) jesteście w Hiszpanii?","","vosotros","¿Estáis (vosotros) en España?","","","","","",1,null,1.3); unitList.add(unit54);
+//        Unit    unit55 = new Unit(55,false,false,"oni","Czy oni są w Madrycie?","Tak, oni są w Madrycie","ellos","¿Están (ellos) en Madrid?","Sí, (ellos) están en Madrid","","","","",1,null,1.3); unitList.add(unit55);
+//        Unit    unit56 = new Unit(56,false,false,"państwo","Czy państwo są z Warszawy?","","ustedes ","¿Son ustedes de Varsovia?","","","","","",1,null,1.3); unitList.add(unit56);
+//        Unit    unit57 = new Unit(57,false,false,"Jak się masz?","","","¿Cómo estás?","","","","","","",1,null,1.3); unitList.add(unit57);
+//        Unit    unit58 = new Unit(58,false,false,"skąd jesteś?","","","¿De dónde eres?","","","","","","",1,null,1.3); unitList.add(unit58);
+//        Unit    unit59 = new Unit(59,false,false,"Mówisz po hiszpańsku?","","","¿Hablas español?","","","","","","",1,null,1.3); unitList.add(unit59);
+//        Unit    unit60 = new Unit(60,false,false,"Ile masz lat?","","","¿Cuántos años tienes?","","","","","","",1,null,1.3); unitList.add(unit60);
+//        Unit    unit61 = new Unit(61,false,false,"Hiszpania","Czy Piotr jest w Hiszpani?","Tak, Piotr jest w Hiszpanii","España","¿Está Pedro en España?","Sí, Pedro está en España","","","","",1,null,1.3); unitList.add(unit61);
+//        Unit    unit62 = new Unit(62,false,false,"Madryt","Czy Pan jest z Madrytu?","","Madrit","¿Es usted de Madrid?","","","","","",1,null,1.3); unitList.add(unit62);
+//        Unit    unit63 = new Unit(63,false,false,"wy (kobiety)","Czy (wy) jesteście z Hiszpanii?","","vosotras","¿Sois (vosotras) de España?","","","","","",1,null,1.3); unitList.add(unit63);
+//        Unit    unit64 = new Unit(64,false,false,"one ","Czy one są z Madrytu?","Nie, one nie są z Madrytu","ellas","¿Son (ellas) de Madrid?","No, (ellas) no son de Madrid","","","","",1,null,1.3); unitList.add(unit64);
+//        Unit    unit65 = new Unit(65,false,false,"język włoski","Mówicie po własku?","Nie, nie mówimy po włosku","el italiano","¿Habláis italiano","No, no hablamos italiano","","","","",1,null,1.3); unitList.add(unit65);
+//        Unit    unit66 = new Unit(66,false,false,"język francuski","Mówi pan po francusku?","Tak, mówie po francusku ","el francés","¿Habla usted francés?","Sí, heblo francés","","","","",1,null,1.3); unitList.add(unit66);
+//        Unit    unit67 = new Unit(67,false,false,"język niemiecki","Mówię dobrze po niemiecku","","el alemán","Hablo bien alemán","","","","","",1,null,1.3); unitList.add(unit67);
+//        Unit    unit68 = new Unit(68,false,false,"język angielski","Mówisz po angielsku?","Tak, mówie po angielsku","el inglés","¿Hablas inglés?","Sí, hablo inglés","","","","",1,null,1.3); unitList.add(unit68);
+//        Unit    unit69 = new Unit(69,false,true,"mówić","","","hablar","hablo","hablas","habla","hablamos","hablais","hablan",1,null,1.3); unitList.add(unit69);
+//        Unit    unit70 = new Unit(70,false,false,"wszystko","Rozumiem wszystko","","todo","Entiendo todo","","","","","",1,null,1.3); unitList.add(unit70);
+//        Unit    unit71 = new Unit(71,false,false,"język rosyjski","Oni mówią dobrze po rosyjsku","","el ruso","Ellos hablan bien ruso","","","","","",1,null,1.3); unitList.add(unit71);
+//        Unit    unit72 = new Unit(72,false,false,"nazywać się ","ja/ty nazywam się","on/ona nazywa sie","Ilamarse","me Ilamo/te Ilamas","se Ilama","","","","",1,null,1.3); unitList.add(unit72);
+//        Unit    unit73 = new Unit(73,false,false,"Anglia","Jestem z Anglii","","Inglaterra","Soy de Inglaterra","","","","","",1,null,1.3); unitList.add(unit73);
+//        Unit    unit74 = new Unit(74,false,false,"Rosja","Jestem z Rosji","","Rusia","Soy de Rusia","","","","","",1,null,1.3); unitList.add(unit74);
 
-        rep_date = new GregorianCalendar(2021,Calendar.DECEMBER,27);
 
-        Unit    unit3 = new Unit(3, true, false, "trzy", "trzy_1", "trzy_2",
-                "three", "", "", "", "", "", "",
-                11, rep_date, 2.8);
-        unitList.add(unit3);
-
-        rep_date = new GregorianCalendar(2022,Calendar.MARCH,1);
-
-        Unit    unit4 = new Unit(4, true, false, "cztery", "", "",
-                "four", "", "", "", "", "", "",
-                1, rep_date, 2.3);
-        unitList.add(unit4);
-
-        Unit    unit5 = new Unit(5, true, false, "pięć", "", "",
-                "five", "", "", "", "", "", "",
-                1, rep_date, 2.3);
-        unitList.add(unit5);
-
-        Unit    unit6 = new Unit(6, true, false, "sześć", "", "",
-                "six", "", "", "", "", "", "",
-                1, rep_date, 1.3);
-        unitList.add(unit6);
-
-        Unit    unit7 = new Unit(7, true, false, "siedem", "", "",
-                "seven", "", "", "", "", "", "",
-                1, rep_date, 1.3);
-        unitList.add(unit7);
-
-        Unit    unit8 = new Unit(8, true, false, "osiem", "", "",
-                "eight", "", "", "", "", "", "",
-                1, rep_date, 1.3);
-        unitList.add(unit8);
-
-        Unit    unit9 = new Unit(9, true,  false, "dziewięć", "", "",
-                "nine", "", "", "", "", "", "",
-                1, rep_date, 1.3);
-        unitList.add(unit9);
-
-        Unit    unit10 = new Unit(10, false, false, "dziesięć", "", "",
-                "ten", "", "", "", "", "", "",
-                1, null, 1.3);
-        unitList.add(unit10);
-
-        Unit    unit11 = new Unit(11, true, false, "jedenaście", "", "",
-                "eleven", "", "", "", "", "", "",
-                1, rep_date, 1.3);
-        unitList.add(unit11);
 
         Scanner scanner= new Scanner(System.in);
         int option=0;
@@ -312,104 +388,133 @@ public class Units {
 //            e.printStackTrace();
 //        }
 
-        if (!isRepetitionDone)
-        {
-            System.out.print(ANSI_RED+"Repetitions have not been done. "+ANSI_RESET);
+        boolean isContinue=false;
+
+        if (!isRepetitionDone) {
+            System.out.print(ANSI_RED + "Repetitions have not been done. " + ANSI_RESET);
             System.out.print("Would you like to continue Y/N? ");
 
-            Scanner scanner= new Scanner(System.in);
-            String tmpAnswer= scanner.nextLine();
+            Scanner scanner = new Scanner(System.in);
+            String tmpAnswer = scanner.nextLine();
 
-            if (tmpAnswer.equals("Y") || (tmpAnswer.equals("y")))
-            {
+            if (tmpAnswer.equals("Y") || (tmpAnswer.equals("y"))) {
+
                 //Continue without repetitions
-                int[] indexes = new int[UNITS_TO_LEARN];
-                int[] repetitions = new int[UNITS_TO_LEARN];
+                isContinue = true;
+            }
+        }
+        else {
+            isContinue=true;
+        }
 
-                //Set repetitions number to 0
-                for (int y=0;y<UNITS_TO_LEARN;y++)
-                    repetitions[y]=0;
+        if (isContinue) {
 
-                //Remember indexes of units to learn
-                int i=0;
-                for (Unit unit: unitList) {
-//            System.out.println("id "+unit.getId());
-                    if (!unit.isTaught())
-                    {
-                        //Remember unit's index
-//                System.out.println("remembered id "+unit.getId());
-                        indexes[i]=unitList.indexOf(unit);
-                        i++;
+            int[] indexes = new int[UNITS_TO_LEARN];
+            int[] repetitions = new int[UNITS_TO_LEARN];
 
-                        // if UNITS_TO_LEARN is reached break the loop
-                        if (i>=UNITS_TO_LEARN){
-                            break;
-                        }
+            //Set repetitions number to 0
+            for (int y=0;y<UNITS_TO_LEARN;y++)
+                repetitions[y]=0;
+
+            //Remember indexes of units to learn
+            int i=0;
+            for (Unit unit: unitList) {
+//              System.out.println("id "+unit.getId());
+                if (!unit.isTaught())
+                {
+                    //Remember unit's index
+//                    System.out.println("remembered id "+unit.getId());
+                    indexes[i]=unitList.indexOf(unit);
+                    i++;
+
+                    // if UNITS_TO_LEARN is reached -  break the loop
+                    if (i>=UNITS_TO_LEARN){
+                        break;
                     }
                 }
+            }
 
-                //Set LEFT_TO_LEARN to UNITS_TO_LEARN.
-                //Number of new units left to learn - daily
-                //initial value is UNITS_TO_LEARN
-                int LEFT_TO_LEARN = i;
+            //Debug
+//            for (int y=0;y<UNITS_TO_LEARN;y++) {
+//                System.out.println("repetitions[" + y + "]=" + repetitions[y]);
+//                System.out.println("indexes[" + y + "]=" + indexes[y]);
+//            }
 
-                if (LEFT_TO_LEARN==0)
-                    System.out.println(ANSI_YELLOW+"There is no unit to learn!!!"+ANSI_RESET);
+            //Set LEFT_TO_LEARN to UNITS_TO_LEARN.
+            //Number of new units left to learn - daily
+            //initial value is UNITS_TO_LEARN
+            int LEFT_TO_LEARN = i;
+            int REAL_UNITS_TO_LEARN=i;
 
-                while(LEFT_TO_LEARN >0){
-
-                    //Draw a number from 1 to LEFT_TO_LEARN
-                    Random randomNumber = new Random();
-
-                    //Number from 0 to LEFT_TO_LEARN-1
-                    int random = randomNumber.nextInt(LEFT_TO_LEARN);
-//            System.out.println("random="+random);
-//            System.out.println("rep[random]="+repetitions[random]);
+            //Debug
 //            System.out.println("LEFT_TO_LEARN="+LEFT_TO_LEARN);
 
-                    //if correct repetition is lower than REP_TO_LEARN
-                    if (repetitions[random]<REP_TO_LEARN)
+            if (LEFT_TO_LEARN==0)
+                System.out.println(ANSI_YELLOW+"There is no unit to learn!!!"+ANSI_RESET);
+
+            while(LEFT_TO_LEARN >0){
+
+                //Draw a number from 1 to LEFT_TO_LEARN
+                Random randomNumber = new Random();
+
+                //Number from 0 to REAL_UNITS_TO_LEARN-1
+                int random = randomNumber.nextInt(REAL_UNITS_TO_LEARN);
+
+                System.out.println("random="+random);
+                System.out.println("repetitions[random]="+repetitions[random]);
+                System.out.println("LEFT_TO_LEARN="+LEFT_TO_LEARN);
+
+                //if correct repetition is lower than REP_TO_LEARN
+                if (repetitions[random]<REP_TO_LEARN) {
+                    //Display question
+                    Unit unit=unitList.get(indexes[random]);
+                    unit.displayQuestion();
+
+
+                    //Wait for answer (in memory) by user
+                    System.out.print("Press "+ANSI_YELLOW+"Enter"+ANSI_RESET+" to continue");
+                    Scanner scanner = new Scanner(System.in);
+                    scanner= new Scanner(System.in);
+                    scanner.nextLine();
+
+                    //Display answer
+                    unit.displayAnswer();
+
+                    //Evaluate answer
+                    //Input grade
+                    System.out.print("Enter your grade: 0 - 5: ");
+                    int grade=scanner.nextInt();
+
+                    //Grade higher than 3 means correct
+                    if (grade>3)
                     {
-                        //Display question
-                        Unit unit=unitList.get(indexes[random]);
-                        unit.displayQuestion();
+                        //Increase repetition number
+                        repetitions[random]=repetitions[random]+1;
 
-                        //Display answer
-                        //Wait for remind by user
-                        System.out.print("Press "+ANSI_YELLOW+"Enter"+ANSI_RESET+" to continue");
-                        scanner= new Scanner(System.in);
-                        scanner.nextLine();
-
-                        //Evaluate answer
-                        //Input grade
-                        System.out.print("Enter your grade: 0 - 5: ");
-                        int grade=scanner.nextInt();
-
-                        //Grade higher than 3 means correct
-                        if (grade>3)
+    //                    System.out.println("rep[random]="+repetitions[random]);
+    //                    System.out.println("REP_TO_LEARN="+REP_TO_LEARN);
+                        if (repetitions[random]>=REP_TO_LEARN)
                         {
-                            //Increase repetition number
-                            repetitions[random]=repetitions[random]+1;
+                            //Decrease number to left
+                            LEFT_TO_LEARN--;
 
-//                    System.out.println("rep[random]="+repetitions[random]);
-//                    System.out.println("REP_TO_LEARN="+REP_TO_LEARN);
-                            if (repetitions[random]>=REP_TO_LEARN)
-                            {
-                                //Decrease number to left
-                                LEFT_TO_LEARN--;
+                            //Mark as Taught
+                            unit.setTaught(true);
 
-                                //Mark as Taught
-                                unit.setTaught(true);
-                            }
+                            //Calculate and set new grade and next repetition date
+                            setNextRepDate(unit, grade);
+
+                            //Debug
+//                            System.out.println("id="+unit.getId()+" learnt");
                         }
-
                     }
 
                 }
 
             }
-
         }
+
+
     }
 
     //Option 7
@@ -553,6 +658,9 @@ public class Units {
     void Load() {
         unitList.clear();
         loadDataFromDB();
+
+        //Set total units number
+        totalUnitNumber=totalUnits();
     }
 
 

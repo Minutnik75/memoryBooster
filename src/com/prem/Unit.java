@@ -219,6 +219,22 @@ public class Unit {
             System.out.println(ANSI_GREEN+answer2+"\t\t"+answer5+ANSI_RESET);
             System.out.println(ANSI_GREEN+answer3+"\t\t"+answer6+ANSI_RESET);
         }
+        else
+        {
+            if (!answer1.equals(""))
+                System.out.println("a="+ANSI_GREEN+answer1+ANSI_RESET);
+            if (!answer2.equals(""))
+                System.out.println("a="+ANSI_GREEN+answer2+ANSI_RESET);
+            if (!answer3.equals(""))
+                System.out.println("a="+ANSI_GREEN+answer3+ANSI_RESET);
+            if (!answer4.equals(""))
+                System.out.println("a="+ANSI_GREEN+answer4+ANSI_RESET);
+            if (!answer5.equals(""))
+                System.out.println("a="+ANSI_GREEN+answer5+ANSI_RESET);
+            if (!answer6.equals(""))
+                System.out.println("a="+ANSI_GREEN+answer6+ANSI_RESET);
+        }
+
         System.out.println("--------------------------------------------------");
     }
 
