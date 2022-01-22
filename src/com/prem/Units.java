@@ -221,6 +221,10 @@ public class Units {
     void repeatUnits() {
         //Set the number of units to repeat
         int unitsToRepeat = unitsToRepeat();
+
+        //Debug
+        System.out.println("unitsToRepeat="+unitsToRepeat);
+
         System.out.println("Number units to repeat:"+ ANSI_PURPLE + unitsToRepeat + ANSI_RESET);
 
         //Random unit to repeat
@@ -248,6 +252,12 @@ public class Units {
 
         for (Unit unit: unitList) {
             nextRepDate = unit.getRepetitionDate();
+
+            //Debug
+//            System.out.println("today="+today.getTime());
+//            if (nextRepDate!=null)
+//                System.out.println("nextRepDate="+nextRepDate.getTime());
+
             if (today.after(nextRepDate) || today.equals(nextRepDate)) {
                 uToR++;
             }
@@ -460,9 +470,10 @@ public class Units {
                 //Number from 0 to REAL_UNITS_TO_LEARN-1
                 int random = randomNumber.nextInt(REAL_UNITS_TO_LEARN);
 
-                System.out.println("random="+random);
-                System.out.println("repetitions[random]="+repetitions[random]);
-                System.out.println("LEFT_TO_LEARN="+LEFT_TO_LEARN);
+                //Debug
+//                System.out.println("random="+random);
+//                System.out.println("repetitions[random]="+repetitions[random]);
+//                System.out.println("LEFT_TO_LEARN="+LEFT_TO_LEARN);
 
                 //if correct repetition is lower than REP_TO_LEARN
                 if (repetitions[random]<REP_TO_LEARN) {
@@ -626,10 +637,28 @@ public class Units {
 //                        System.out.println("day: "+day);
 
                         int iYear=Integer.valueOf(year);
-                        int iMonth=Integer.valueOf(month)-1;
+                        int iMonth=Integer.valueOf(month);
                         int iDay=Integer.valueOf(day);
 
+                        switch (iMonth) {
+                            case 1 -> iMonth=Calendar.JANUARY;
+                            case 2 -> iMonth=Calendar.FEBRUARY;
+                            case 3 -> iMonth=Calendar.MARCH;
+                            case 4 -> iMonth=Calendar.APRIL;
+                            case 5 -> iMonth=Calendar.MAY;
+                            case 6 -> iMonth=Calendar.JUNE;
+                            case 7 -> iMonth=Calendar.JULY;
+                            case 8 -> iMonth=Calendar.AUGUST;
+                            case 9 -> iMonth=Calendar.SEPTEMBER;
+                            case 10 -> iMonth=Calendar.OCTOBER;
+                            case 11 -> iMonth=Calendar.NOVEMBER;
+                            case 12 -> iMonth=Calendar.DECEMBER;
+                        }
+
                         repetitionDate = new GregorianCalendar(iYear,iMonth,iDay);
+
+                        //Debug
+//                        System.out.println("repetitionDate="+repetitionDate.getTime());
                     }
                 }
 
@@ -753,17 +782,17 @@ public class Units {
                 writer.write(line);
                 writer.newLine();
 
+                //repetitionDate
                 if(unit.isTaught()) {
-                    //repetitionDate
                     GregorianCalendar calendar = new GregorianCalendar();
                     String month="";
                     String day="";
                     calendar=(GregorianCalendar) unit.getRepetitionDate();
 
-                    if (calendar.get(Calendar.MONTH)<10)
-                        month="0"+String.valueOf(calendar.get(Calendar.MONTH));
+                    if (calendar.get(Calendar.MONTH)+1<10)
+                        month="0"+String.valueOf(calendar.get(Calendar.MONTH)+1);
                     else
-                        month=String.valueOf(calendar.get(Calendar.MONTH));
+                        month=String.valueOf(calendar.get(Calendar.MONTH)+1);
 
                     if (calendar.get(Calendar.DAY_OF_MONTH)<10)
                         day="0"+String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
