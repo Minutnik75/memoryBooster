@@ -192,7 +192,7 @@ public class Unit {
     {
         System.out.println();
         System.out.println("==================================================");
-        System.out.println("id="+id);
+//        System.out.println("id="+id);
         System.out.println("q="+ANSI_YELLOW+question+ANSI_RESET);
         if (!question1.equals(""))
             System.out.println("q="+ANSI_YELLOW+question1+ANSI_RESET);
@@ -206,7 +206,7 @@ public class Unit {
     public void displayAnswer()
     {
         System.out.println("--------------------------------------------------");
-        System.out.println("id="+id);
+//        System.out.println("id="+id);
         System.out.println("q="+ANSI_YELLOW+question+ANSI_RESET);
         if (!question1.equals(""))
             System.out.println("q="+ANSI_YELLOW+question1+ANSI_RESET);
