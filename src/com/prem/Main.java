@@ -30,7 +30,7 @@ public class Main {
                 case 0 -> units.displayUnits();
                 case 1 -> units.repeatUnits();
                 case 2 -> units.Learn();
-//                case 3 -> System.out.println("Wybrano opcję 3");
+                case 3 -> units.Add();
                 case 7 -> units.Load();
                 case 8 -> units.Save();
                 case 9 -> shouldContinue=false;
@@ -50,7 +50,7 @@ public class Main {
         System.out.println("0 - Display");
         System.out.println("1 - Repeat");
         System.out.println("2 - Learn");
-//        System.out.println("3 - Add");
+        System.out.println("3 - Add");
         System.out.println("7 - Load");
         System.out.println("8 - Save");
         System.out.println("9 - Exit");

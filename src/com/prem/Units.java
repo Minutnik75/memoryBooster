@@ -192,7 +192,73 @@ public class Units {
 //        Unit    unit73 = new Unit(73,false,false,"Anglia","Jestem z Anglii","","Inglaterra","Soy de Inglaterra","","","","","",1,null,1.3); unitList.add(unit73);
 //        Unit    unit74 = new Unit(74,false,false,"Rosja","Jestem z Rosji","","Rusia","Soy de Rusia","","","","","",1,null,1.3); unitList.add(unit74);
 
-
+ /*       Unit    unit1 = new Unit(1,false,false,"skąpy","","","stingy","","","","","","",1,null,1.3); unitList.add(unit1);
+        Unit    unit2 = new Unit(2,false,false,"zrównoważony rozwój","","","sustainability","","","","","","",1,null,1.3); unitList.add(unit2);
+        Unit    unit3 = new Unit(3,false,false,"koniczyny","","","shamrock","","","","","","",1,null,1.3); unitList.add(unit3);
+        Unit    unit4 = new Unit(4,false,false,"kolega","","","fellow","","","","","","",1,null,1.3); unitList.add(unit4);
+        Unit    unit5 = new Unit(5,false,false,"uwodzicielska moc","","","the seductive power ","","","","","","",1,null,1.3); unitList.add(unit5);
+        Unit    unit6 = new Unit(6,false,false,"Co mogło wyjaśnić to odkrycie ?","","","What could account for this finding?","","","","","","",1,null,1.3); unitList.add(unit6);
+        Unit    unit7 = new Unit(7,false,false,"oszukać","","","fool","","","","","","",1,null,1.3); unitList.add(unit7);
+        Unit    unit8 = new Unit(8,false,false,"wprowadzenie","","","induction","","","","","","",1,null,1.3); unitList.add(unit8);
+        Unit    unit9 = new Unit(9,false,false,"absencja","","","absenteeism","","","","","","",1,null,1.3); unitList.add(unit9);
+        Unit    unit10 = new Unit(10,false,false,"partycypacyjne (wspólne) sposoby podejmowania decyzji","","","participatory ways of making decisions","","","","","","",1,null,1.3); unitList.add(unit10);
+        Unit    unit11 = new Unit(11,false,false,"wyluzowany","","","easy going","","","","","","",1,null,1.3); unitList.add(unit11);
+        Unit    unit12 = new Unit(12,false,false,"wykluczać","","","rule out","","","","","","",1,null,1.3); unitList.add(unit12);
+        Unit    unit13 = new Unit(13,false,false,"dojrzewanie","","","maturation","","","","","","",1,null,1.3); unitList.add(unit13);
+        Unit    unit14 = new Unit(14,false,false,"wynagrodzenia","","","wages","","","","","","",1,null,1.3); unitList.add(unit14);
+        Unit    unit15 = new Unit(15,false,false,"epidemia odry","","","outbreak of measles","","","","","","",1,null,1.3); unitList.add(unit15);
+        Unit    unit16 = new Unit(16,false,false,"dwuznaczoność, niejasność, zagadadkowosć","","","ambiguity","","","","","","",1,null,1.3); unitList.add(unit16);
+        Unit    unit17 = new Unit(17,false,false,"miary dyspersji (czyli rozrzut )","","","measures of dispersion","","","","","","",1,null,1.3); unitList.add(unit17);
+        Unit    unit18 = new Unit(18,false,false,"odchylenie standardowe","","","the standard deviation","","","","","","",1,null,1.3); unitList.add(unit18);
+        Unit    unit19 = new Unit(19,false,false,"wyciąganie pierwiastka kwadratoweg","","","taking the square root","","","","","","",1,null,1.3); unitList.add(unit19);
+        Unit    unit20 = new Unit(20,false,false,"stronniczość","","","bias","","","","","","",1,null,1.3); unitList.add(unit20);
+        Unit    unit21 = new Unit(21,false,false,"płodny","","","fertile","","","","","","",1,null,1.3); unitList.add(unit21);
+        Unit    unit22 = new Unit(22,false,false,"dependability","","","rzetelność","","","","","","",1,null,1.3); unitList.add(unit22);
+        Unit    unit23 = new Unit(23,false,false,"sklepy (na o)","","","outlets","","","","","","",1,null,1.3); unitList.add(unit23);
+        Unit    unit24 = new Unit(24,false,false,"Dziekan","","","Dean","","","","","","",1,null,1.3); unitList.add(unit24);
+        Unit    unit25 = new Unit(25,false,false,"Prodziekan","","","Associate Dean","","","","","","",1,null,1.3); unitList.add(unit25);
+        Unit    unit26 = new Unit(26,false,false,"współpracownik","","","associate","","","","","","",1,null,1.3); unitList.add(unit26);
+        Unit    unit27 = new Unit(27,false,false,"skrawek, złom, resztka","","","scrap","","","","","","",1,null,1.3); unitList.add(unit27);
+        Unit    unit28 = new Unit(28,false,false,"przewyższać","","","outperform","","","","","","",1,null,1.3); unitList.add(unit28);
+        Unit    unit29 = new Unit(29,false,false,"silne poczucie osobisteg zaanagażowania","","","strong sense of personal commitment","","","","","","",1,null,1.3); unitList.add(unit29);
+        Unit    unit30 = new Unit(30,false,false,"wzajemna odpowiedzialność","","","mutual accountability","","","","","","",1,null,1.3); unitList.add(unit30);
+        Unit    unit31 = new Unit(31,false,false,"wspinać się","","","climb out","","","","","","",1,null,1.3); unitList.add(unit31);
+        Unit    unit32 = new Unit(32,false,false,"smoła, pułap lotu","","","pitch","","","","","","",1,null,1.3); unitList.add(unit32);
+        Unit    unit33 = new Unit(33,false,false,"wydający dyrektwy, rozkazy","","","directive","","","","","","",1,null,1.3); unitList.add(unit33);
+        Unit    unit34 = new Unit(34,false,false,"dostrzec, zauważyć","","","perceive","","","","","","",1,null,1.3); unitList.add(unit34);
+        Unit    unit35 = new Unit(35,false,false,"obejmujący, włącznie z","","","inclusive","","","","","","",1,null,1.3); unitList.add(unit35);
+        Unit    unit36 = new Unit(36,false,false,"powstrzymuje","","","restrains","","","","","","",1,null,1.3); unitList.add(unit36);
+        Unit    unit37 = new Unit(37,false,false,"pominięty","","","left out","","","","","","",1,null,1.3); unitList.add(unit37);
+        Unit    unit38 = new Unit(38,false,false,"lekceważony","","","disrespected","","","","","","",1,null,1.3); unitList.add(unit38);
+        Unit    unit39 = new Unit(39,false,false,"rozbieżny","","","divergent","","","","","","",1,null,1.3); unitList.add(unit39);
+        Unit    unit40 = new Unit(40,false,false,"wzmocnienie, upodmiotowienie","","","empowerment","","","","","","",1,null,1.3); unitList.add(unit40);
+        Unit    unit41 = new Unit(41,false,false,"omylny","","","fallible","","","","","","",1,null,1.3); unitList.add(unit41);
+        Unit    unit42 = new Unit(42,false,false,"od stygmatyzować","","","destigmatize","","","","","","",1,null,1.3); unitList.add(unit42);
+        Unit    unit43 = new Unit(43,false,false,"poczucie własnej wartości","","","self-esteem","","","","","","",1,null,1.3); unitList.add(unit43);
+        Unit    unit44 = new Unit(44,false,false,"podoficer","","","non-commissioned officer","","","","","","",1,null,1.3); unitList.add(unit44);
+        Unit    unit45 = new Unit(45,false,false,"układ napędowy","","","propulsion system","","","","","","",1,null,1.3); unitList.add(unit45);
+        Unit    unit46 = new Unit(46,false,false,"statek handlowy","","","merchant ship","","","","","","",1,null,1.3); unitList.add(unit46);
+        Unit    unit47 = new Unit(47,false,false,"szeregowych męższczyzn","","","enlisted men","","","","","","",1,null,1.3); unitList.add(unit47);
+        Unit    unit48 = new Unit(48,false,false,"niechlujny","","","sloppy","","","","","","",1,null,1.3); unitList.add(unit48);
+        Unit    unit49 = new Unit(49,false,false,"poważny cios","","","major blow","","","","","","",1,null,1.3); unitList.add(unit49);
+        Unit    unit50 = new Unit(50,false,false,"Komandor","","","Commodore","","","","","","",1,null,1.3); unitList.add(unit50);
+        Unit    unit51 = new Unit(51,false,false,"Dowódca","","","Commander","","","","","","",1,null,1.3); unitList.add(unit51);
+        Unit    unit52 = new Unit(52,false,false,"zyskowność","","","viability","","","","","","",1,null,1.3); unitList.add(unit52);
+        Unit    unit53 = new Unit(53,false,false,"atrakcyjność","","","desirability","","","","","","",1,null,1.3); unitList.add(unit53);
+        Unit    unit54 = new Unit(54,false,false,"produkcja własna","","","in-house manufacturing","","","","","","",1,null,1.3); unitList.add(unit54);
+        Unit    unit55 = new Unit(55,false,false,"produkcja kontraktowa (zlecona)","","","contract manufacturing","","","","","","",1,null,1.3); unitList.add(unit55);
+        Unit    unit56 = new Unit(56,false,false,"towarzyszący","","","accompanying","","","","","","",1,null,1.3); unitList.add(unit56);
+        Unit    unit57 = new Unit(57,false,false,"perspektywa rynku","","","market outlook","","","","","","",1,null,1.3); unitList.add(unit57);
+        Unit    unit58 = new Unit(58,false,false,"poprawiać, zrewidować","","","revise","","","","","","",1,null,1.3); unitList.add(unit58);
+        Unit    unit59 = new Unit(59,false,false,"prognoza zasięgu sieci","","","network coverage forecasts","","","","","","",1,null,1.3); unitList.add(unit59);
+        Unit    unit60 = new Unit(60,false,false,"przeniesienie strat","","","loss carry forward","","","","","","",1,null,1.3); unitList.add(unit60);
+        Unit    unit61 = new Unit(61,false,false,"ustawowa stawka podatku","","","statutory tax rate","","","","","","",1,null,1.3); unitList.add(unit61);
+        Unit    unit62 = new Unit(62,false,false,"ze zdziwieniem, konsternacją","","","with bafflement","","","","","","",1,null,1.3); unitList.add(unit62);
+        Unit    unit63 = new Unit(63,false,false,"istota ludzka","","","human being","","","","","","",1,null,1.3); unitList.add(unit63);
+        Unit    unit64 = new Unit(64,false,false,"być podatnym","","","be susceptible","","","","","","",1,null,1.3); unitList.add(unit64);
+        Unit    unit65 = new Unit(65,false,false,"błędy (na b)","","","blunders","","","","","","",1,null,1.3); unitList.add(unit65);
+        Unit    unit66 = new Unit(66,false,false,"rutynowe uprzedzenia","","","routine biases","","","","","","",1,null,1.3); unitList.add(unit66);
+*/
 
         Scanner scanner= new Scanner(System.in);
         int option=0;
@@ -528,6 +594,14 @@ public class Units {
 
     }
 
+    //Option 3 - Add
+    void Add()
+    {
+        Unit    unit1 = new Unit(101,false,false,"skąpy","","","stingy","","","","","","",1,null,1.3); unitList.add(unit1);
+
+        //Set total units number
+        totalUnitNumber=totalUnits();
+    }
     //Option 7
     //Right now data will be load from text file
     void loadDataFromDB()
