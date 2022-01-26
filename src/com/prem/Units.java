@@ -289,7 +289,7 @@ public class Units {
         int unitsToRepeat = unitsToRepeat();
 
         //Debug
-        System.out.println("unitsToRepeat="+unitsToRepeat);
+//        System.out.println("unitsToRepeat="+unitsToRepeat);
 
         System.out.println("Number units to repeat:"+ ANSI_PURPLE + unitsToRepeat + ANSI_RESET);
 
@@ -297,8 +297,10 @@ public class Units {
         while (unitsToRepeat >0){
             int selected = (int)(Math.random() * unitsToRepeat)+1;
             //System.out.println("Selected: " + selected);
-            displayUnit(selected);
-            unitsToRepeat = unitsToRepeat -1;
+            if(displayUnit(selected)==true) {
+                unitsToRepeat = unitsToRepeat-1;
+            };
+
         }
 
         isRepetitionDone=true;
@@ -341,7 +343,7 @@ public class Units {
     }
 
     //Option 1
-    void displayUnit(int unitToDisplay){
+    boolean displayUnit(int unitToDisplay){
 
         int uToR = 0;
         Unit selected=null;
@@ -381,8 +383,9 @@ public class Units {
         int grade=scanner.nextInt();
 
         //Calculate and set new grade and next repetition date
-        setNextRepDate(selected, grade);
 
+        boolean tOf=setNextRepDate(selected, grade);
+        return tOf;
     }
 
     //Option 1 and 2 menu of quality of repetition response in 0-5 grade scale
@@ -396,7 +399,7 @@ public class Units {
     }
 
     //Calculate and set new grade and next repetition date
-    void setNextRepDate(Unit selected, int grade) {
+    boolean setNextRepDate(Unit selected, int grade) {
 
         double newEF=1.3;  //the smallest value
         int newInterval=1; //the smallest value
@@ -406,6 +409,11 @@ public class Units {
 
         if (grade<3) {
             newEF=selected.getEasinessFactor();
+            newInterval=1;
+
+            //Set up only new interval
+            selected.setInterval(newInterval);
+            return false;
         } else
         {
             // For grades 3,4,5,6
@@ -431,20 +439,19 @@ public class Units {
                 newInterval=2;
             }
 
+             //Set new date + newInterval
+            newDate.add(Calendar.DAY_OF_MONTH,newInterval);
+
+
+            //Set new interval and EF
+            selected.setInterval(newInterval);
+            selected.setEasinessFactor(newEF);
+            selected.setRepetitionDate(newDate);
+
+            //Debug
+            //selected.displayUnit();
+            return true;
         }
-
-        //Set new date + newInterval
-        newDate.add(Calendar.DAY_OF_MONTH,newInterval);
-
-
-        //Set new interval and EF
-        selected.setInterval(newInterval);
-        selected.setEasinessFactor(newEF);
-        selected.setRepetitionDate(newDate);
-
-        //Just for Debug reason
-        //selected.displayUnit();
-
     }
 
     //Option 2
