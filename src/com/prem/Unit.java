@@ -34,6 +34,8 @@ public class Unit {
     Calendar repetitionDate;     //next repetition date
     double easinessFactor;
 
+    boolean isRepeatedCorrectly=true;
+
     public Unit(long id, boolean isTaught, boolean isVerbIrregular, String question, String question1, String question2,
                 String answer, String answer1, String answer2, String answer3, String answer4, String answer5, String answer6,
                 int interval, Calendar repetitionDate, double easinessFactor) {
@@ -53,6 +55,7 @@ public class Unit {
         this.interval = interval;
         this.repetitionDate = repetitionDate;
         this.easinessFactor = easinessFactor;
+        this.isRepeatedCorrectly=true;
     }
 
     public long getId() {
@@ -244,5 +247,13 @@ public class Unit {
 
     public void setTaught(boolean taught) {
         isTaught = taught;
+    }
+
+    public boolean isRepeatedCorrectly() {
+        return isRepeatedCorrectly;
+    }
+
+    public void setRepeatedCorrectly(boolean repeatedCorrectly) {
+        isRepeatedCorrectly = repeatedCorrectly;
     }
 }

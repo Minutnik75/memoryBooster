@@ -408,39 +408,46 @@ public class Units {
         Calendar newDate=new GregorianCalendar();
 
         if (grade<3) {
-            newEF=selected.getEasinessFactor();
-            newInterval=1;
-
-            //Set up only new interval
-            selected.setInterval(newInterval);
+            selected.setRepeatedCorrectly(false);
             return false;
         } else
         {
-            // For grades 3,4,5,6
-            //EF':=EF+(0.1-(5-q)*(0.08+(5-q)*0.02))
-            //q=quality of response = grade
-            newEF= selected.easinessFactor +
-                    (0.1-(5-grade)*(0.08+(5-grade)*0.02));
+            if (selected.isRepeatedCorrectly) {
+                // For grades 3,4,5,6
+                //EF':=EF+(0.1-(5-q)*(0.08+(5-q)*0.02))
+                //q=quality of response = grade
+                newEF = selected.easinessFactor +
+                        (0.1 - (5 - grade) * (0.08 + (5 - grade) * 0.02));
 
-            //If EF is less than 1.3 then let EF be 1.3.
-            if (newEF<1.3) newEF=1.3;
+                //If EF is less than 1.3 then let EF be 1.3.
+                if (newEF < 1.3) newEF = 1.3;
 
 
-            //if interval > 2 then: for n>2: I(n):=I(n-1)*EF
-            if (selected.getInterval()>2) {
-                newInterval=(int)(selected.getInterval()*newEF+0.5);
+                //if interval > 2 then: for n>2: I(n):=I(n-1)*EF
+                if (selected.getInterval() > 2) {
+                    newInterval = (int) (selected.getInterval() * newEF + 0.5);
+                }
+
+                if (selected.getInterval() == 2) {
+                    newInterval = 6;
+                }
+
+                if (selected.getInterval() == 1) {
+                    newInterval = 2;
+                }
+
+            }
+            else {
+                newEF=selected.getEasinessFactor();
+                newInterval=1;
+
+                //Set up only new interval
+                selected.setInterval(newInterval);
+
             }
 
-            if (selected.getInterval()==2) {
-                newInterval=6;
-            }
-
-            if (selected.getInterval()==1) {
-                newInterval=2;
-            }
-
-             //Set new date + newInterval
-            newDate.add(Calendar.DAY_OF_MONTH,newInterval);
+            //Set new date + newInterval
+            newDate.add(Calendar.DAY_OF_MONTH, newInterval);
 
 
             //Set new interval and EF
@@ -450,6 +457,7 @@ public class Units {
 
             //Debug
             //selected.displayUnit();
+
             return true;
         }
     }
