@@ -612,25 +612,33 @@ public class Units {
     //Option 3 - Add
     void Add()
     {
-/*
-        Unit    unit67 = new Unit(67,false,false,"leveraging these technologies","","","wykorzystanie tych technologii","","","","","","",1,null,1.3); unitList.add(unit67);
-        Unit    unit68 = new Unit(68,false,false,"blueprint","","","projekt","","","","","","",1,null,1.3); unitList.add(unit68);
-        Unit    unit69 = new Unit(69,false,false,"diverging","","","rozbieżne","","","","","","",1,null,1.3); unitList.add(unit69);
-        Unit    unit70 = new Unit(70,false,false,"converging","","","zbieżne","","","","","","",1,null,1.3); unitList.add(unit70);
-        Unit    unit71 = new Unit(71,false,false,"distilling","","","destylacja","","","","","","",1,null,1.3); unitList.add(unit71);
-        Unit    unit72 = new Unit(72,false,false,"be teased out","","","być wyśmienitym","","","","","","",1,null,1.3); unitList.add(unit72);
-        Unit    unit73 = new Unit(73,false,false,"hot spot","","","gorący punkt","","","","","","",1,null,1.3); unitList.add(unit73);
-        Unit    unit74 = new Unit(74,false,false,"crunching","","","chrupanie","","","","","","",1,null,1.3); unitList.add(unit74);
-        Unit    unit75 = new Unit(75,false,false,"flesh out","","","miąższ (takie mięcho rozwiązania)","","","","","","",1,null,1.3); unitList.add(unit75);
-        Unit    unit76 = new Unit(76,false,false,"decouple","","","odłączyć","","","","","","",1,null,1.3); unitList.add(unit76);
-        Unit    unit77 = new Unit(77,false,false,"compulsory ","","","obowiązkowy","","","","","","",1,null,1.3); unitList.add(unit77);
-        Unit    unit78 = new Unit(78,false,false,"getting along with others","","","dogadywanie się z innymi","","","","","","",1,null,1.3); unitList.add(unit78);
-        Unit    unit79 = new Unit(79,false,false,"habitation","","","mieszkanie na o","","","","","","",1,null,1.3); unitList.add(unit79);
-        Unit    unit80 = new Unit(80,false,false,"windswept ","","","smagany wiatrem","","","","","","",1,null,1.3); unitList.add(unit80);
-        Unit    unit81 = new Unit(81,false,false,"twigs and leaves","","","gałązki i liście","","","","","","",1,null,1.3); unitList.add(unit81);
-        Unit    unit82 = new Unit(82,false,false,"comprise","","","zawiera","","","","","","",1,null,1.3); unitList.add(unit82);
-*/
 
+
+// Tu dodajemy jednostki
+
+        Unit    unit83 = new Unit(83,false,false,"do upadłego","Możesz krzyczeć do upadłego, ale nikt ci tu nie pomoże.","","till you are blue in the face","You may shout till you are blue in the face, but no-one will help you here","","","","","",1,null,1.3); unitList.add(unit83);
+        Unit    unit84 = new Unit(84,false,false,"zostawić to bez zmian","","","keep it as is","","","","","","",1,null,1.3); unitList.add(unit84);
+        Unit    unit85 = new Unit(85,false,false,"do trzech razy sztuka","Znowu mi się udało, ale do trzech razy sztuka!","","third time lucky","I've failed again, but third time lucky!","","","","","",1,null,1.3); unitList.add(unit85);
+        Unit    unit86 = new Unit(86,false,false,"dwór, majątek ziemski","","","manor","","","","","","",1,null,1.3); unitList.add(unit86);
+        Unit    unit87 = new Unit(87,false,false,"drobiazgi, śmieci","","","the ods and ends","","","","","","",1,null,1.3); unitList.add(unit87);
+        Unit    unit88 = new Unit(88,false,false,"za i przeciw","Musimy rozważyć wszystkie za i przeciw","","the pros and cons","We have to consider all the pros and cons","","","","","",1,null,1.3); unitList.add(unit88);
+        Unit    unit89 = new Unit(89,false,false,"kropla która przepełnia czarę goryczy","","","the stroke that brakes the camel's back","","","","","","",1,null,1.3); unitList.add(unit89);
+        Unit    unit90 = new Unit(90,false,true,"sczytywać, robić korektę","(odmiana!)","","proofread [...rid]","proofread […red]","proofread […red]","","","","",1,null,1.3); unitList.add(unit90);
+        Unit    unit91 = new Unit(91,false,false,"coś nadzwyczajnego","ósmy cód świata","","the best thing since sliced bread","","","","","","",1,null,1.3); unitList.add(unit91);
+        Unit    unit92 = new Unit(92,false,false,"dotykać palcami, macać","","","finger","","","","","","",1,null,1.3); unitList.add(unit92);
+        Unit    unit93 = new Unit(93,false,false,"dotykać (żeby coś poczuć)","dawać odczucie","Dotknij jego czoła","feel","","Feel his forehead","","","","",1,null,1.3); unitList.add(unit93);
+        Unit    unit94 = new Unit(94,false,false,"czucie","","","feeling","","","","","","",1,null,1.3); unitList.add(unit94);
+        Unit    unit95 = new Unit(95,false,true,"brać udział, uczestniczyć","pokrzepić się","uraczyć się (odmiana!)","partake","partook","partaken","","","","",1,null,1.3); unitList.add(unit95);
+        Unit    unit96 = new Unit(96,false,false,"wpatrywać się (próbując coś dostrzec)","","","peer","","","","","","",1,null,1.3); unitList.add(unit96);
+        Unit    unit97 = new Unit(97,false,true,"równoważyć, kompensować","(odmiana!)","","offset","offset","offset","","","","",1,null,1.3); unitList.add(unit97);
+        Unit    unit98 = new Unit(98,false,true,"wyrastać (z czegoś)","(odmiana!)","","outgrow","outgrew","outgrown","","","","",1,null,1.3); unitList.add(unit98);
+        Unit    unit99 = new Unit(99,false,false,"zasadnicza kwestia, najistotniejszy problem","","","the bottom line","","","","","","",1,null,1.3); unitList.add(unit99);
+        Unit    unit100 = new Unit(100,false,false,"odstający od pozostałych, inny","Karol zawsze był trochę inny…","","the odd one out","Karol was always the odd one out…","","","","","",1,null,1.3); unitList.add(unit100);
+        Unit    unit101 = new Unit(101,false,false,"cały i zdrowy","","","safe and sound","","","","","","",1,null,1.3); unitList.add(unit101);
+        Unit    unit102 = new Unit(102,false,false,"kolej na czyjąś deyzcję, ruch","","","the ball is in sb's court","","","","","","",1,null,1.3); unitList.add(unit102);
+        Unit    unit103 = new Unit(103,false,false,"szeroko się uśmiechać","szeroki uśmiech","","grin","","","","","","",1,null,1.3); unitList.add(unit103);
+        Unit    unit104 = new Unit(104,false,false,"grzbiet","krzyż (dolna część pleców)","grzbiet dłoni (wierzch dłoni)","back","the small of the back","the back of the hand","","","","",1,null,1.3); unitList.add(unit104);
+        Unit    unit105 = new Unit(105,false,false,"biurokracja","","","red tape","","","","","","",1,null,1.3); unitList.add(unit105);
 
 
         //Set total units number
